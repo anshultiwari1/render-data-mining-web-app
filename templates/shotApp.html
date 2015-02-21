@@ -1,0 +1,606 @@
+<!--
+Author  : Anshul Tiwari
+Date    : Jan 22, 2015
+
+Description : Shot List Page.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Shot Info
+		</title>
+		<link rel="shortcut icon" href="../media/Images/favicon.ico" />
+		<!-- <link href="../media/css/Site.css" rel="stylesheet" type="text/css" /> -->
+		<link href="../media/css/jquery.datepick.css" rel="stylesheet" type="text/css" />
+		<script src="../media/js/jquery-1.10.2.min.js" language="javascript" type="text/javascript"></script>
+		<script src="../media/js/jquery.jsonrpc.js"></script>
+		<script src="../media/js/jquery-ui-1.10.0.min.js"></script>
+		<script src="../media/js/jquery.datepick.js"></script>
+		<script type="text/javascript">
+                        var url = '/jsonrpc';
+			var rpc = $.jsonRPC.setup({
+				endPoint: url,
+				namespace: ''
+			});
+
+			function setClient(){
+				var server = $('#server').val();
+				rpc.batchRequest([
+					{method: 'setClientServer', params: [server]}
+				], {
+					url: url,
+					error: function(json) {
+						alert("Error");
+					},
+					success: function(json){
+						//console.log(json[0].result);
+						draw_table();
+					}
+				});
+			}
+
+
+			function draw_table(){
+				//var server = $('#server').val();
+                                // loader -- Please wait
+				var feed = {"user":$('#user_info').val(), "seq":$('#seq_info').val(), "scn":$('#scn_info').val(), "shot":$('#shot_info').val()};
+				//console.log(feed);
+				rpc.batchRequest([
+					{method: 'getShotList', params: [feed]}
+				], {
+					url: url,
+					error: function(json) {
+						alert("Error");
+					},
+					success: function(json){
+                                                // loader finish
+						//console.log(json[0]);
+						var result = json[0]['result'];
+						var rowCount = 1;
+						var rowClass;
+						$("#shotTable > tbody").html("");
+						$.each(result, function(value){
+							if (rowCount%2 ==0){	rowClass = "even";}
+							else{	rowClass = "odd";}
+							//var info = [result[value]['title'], result[value]['owner'], result[value]['jid'], result[value]['numdone']];
+							var row = '<tr class="'+rowClass+'">'+
+										'<td><input class="tab_info" value="'+result[value]['title'].toLowerCase()+'" type="text" style="text-align:left" onclick="details('+result[value]['jid']+')"/></td>'+
+										'<td><input class="tab_info" value="'+result[value]['owner']+'" type="text" disabled="disabled"/></td>'+
+										'<td><input class="tab_info" value="'+result[value]['jid']+'" type="text" disabled="disabled"/></td>'+
+										'<td><input class="tab_info" value="'+result[value]['numdone']+'" type="text" disabled="disabled"/></td>'+
+									'</tr>';
+							rowCount+=1;
+							$("#shotTable > tbody:last").append(row);
+						});
+					}
+				});
+			}
+
+
+			function details(jid){
+				rpc.batchRequest([
+					{method: 'getFrameList', params: [jid]}
+				], {
+					url: url,
+					error: function(json){
+						alert("Error");
+					},
+					success: function(json){
+						//console.log(json[0]['result']);
+						$('#name').html(json[0]['result'][3]);
+						$('#user').html(json[0]['result'][4]);
+						$('#job_id').html(jid);
+						$('#frames').html(json[0]['result'][5]);
+						$('#ttime').html(json[0]['result'][1]);
+						$('#atime').html(json[0]['result'][2]);
+						var result = json[0]['result'][0];
+						var rowCount = 1;
+						var rowClass;
+						$("#frameTable > tbody").html("");
+						$.each(result, function(value){
+							if (rowCount%2 ==0){	rowClass = "even";}
+							else{	rowClass = "odd";}
+							var row = '<tr class="'+rowClass+'">'+
+										'<td><input class="tab_info" value="'+result[value]['tid']+'" type="text" disabled="disabled"/></td>'+
+										'<td><input class="tab_info" value="'+result[value]['frame']+'" type="text" disabled="disabled"/></td>'+
+										'<td><input class="tab_info" value="'+result[value]['elapsedreal']+'" type="text" disabled="disabled"/></td>'+
+									'</tr>';
+							rowCount+=1;
+							$("#frameTable > tbody:last").append(row);
+						});
+					}
+				});
+				attn_time_open();
+			}
+
+
+			function dates(days){
+				var today, day1, day2;
+				if(days == "default"){
+				      today = new Date();
+				      day1 = new Date((today.setDate(today.getDate()-5)));
+				      //$('#pre').html(today);
+				} else {
+				      today = new Date(($('#pre').html()));
+				      day1 = new Date((today.setDate(today.getDate()-5)));
+				}
+			}
+
+
+			function feed_info(){
+				//var feed = $('#user_info').val();
+				var feed = {"user":$('#user_info').val(), "seq":$('#seq_info').val(), "scn":$('#scn_info').val(), "shot":$('#shot_info').val()};
+				rpc.batchRequest([
+					{method: 'getAllJobsTime', params: [feed]}
+				], {
+					url: url,
+					error: function(json){
+						alert("Error");
+					},
+					success: function(json){
+						//console.log(json[0]['result']);
+						var result = json[0]['result'];
+						//$('#return_info').html(json[0]['result']);
+						$('#return_info_tottime').val(result[0]);
+						$('#return_info_avgtime').val(result[1]);
+						$('#return_info_totframe').val(result[2]);
+						$('#return_info_totrender').val(result[3]);
+					}
+				});
+			}
+
+
+			function attn_time_open(){
+				window.scrollTo(0,0);
+				$("#fade").slideDown("fast");
+				$("#attn_time").delay(100).slideDown("slow");
+				$("#attn_time").show();
+			}
+
+
+			function attn_time_close(){
+				$("#attn_time").delay(100).slideUp("slow");
+				$("#fade").delay(300).slideUp("slow");
+			}
+
+
+			function export_shots_to_csv(){
+				var headers = $('#shotTable').find('thead > tr'),
+				body = $('#shotTable').find('tbody > tr');
+
+				// temporary delimiter to avoid splitting the actual contents
+				tmpColDelim = String.fromCharCode(11),
+				tmpRowDelim = String.fromCharCode(0),
+				// actual delimiter for csv format
+				colDelim = '","',
+				rowDelim = '"\r\n"';
+
+				csv = '"' + headers.map(function (i, row) {
+					var cols = $(row).find('th');
+					return cols.map(function (j, col) {
+						var cont = $(col).text();
+						return cont.replace('"', '""');
+					}).get().join(tmpColDelim);
+				}).get().join(tmpRowDelim)
+					.split(tmpRowDelim).join(rowDelim)
+					.split(tmpColDelim).join(colDelim) + rowDelim +
+				body.map(function (i, row) {
+					var cols = $(row).find('td > input');
+					return cols.map(function (j, col) {
+						var cont = $(col).val();
+						return cont.replace('"', '""');
+					}).get().join(tmpColDelim);
+				}).get().join(tmpRowDelim)
+					.split(tmpRowDelim).join(rowDelim)
+					.split(tmpColDelim).join(colDelim) + '"';
+
+				//csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+				console.log(csv);
+				var server = $('#server').val(),
+				today = new Date().toDateString().split(" ").join("-"),
+				file = "shotlist_"+server+"_"+today;
+				write_csv(csv, file);
+			}
+
+			function export_frames_to_csv(){
+				var headers = $('#frameInfoTable').find('thead > tr'),
+				body = $('#frameInfoTable').find('tbody > tr');
+
+				// temporary delimiter to avoid splitting the actual contents
+				tmpColDelim = String.fromCharCode(11),
+				tmpRowDelim = String.fromCharCode(0),
+				// actual delimiter for csv format
+				colDelim = '","',
+				rowDelim = '"\r\n"';
+
+				csv = headers.map(function (i, row) {
+					var cols = $(row).find('th');
+					return cols.map(function (j, col) {
+						var cont = $(col).text();
+						return cont;
+					}).get().join(tmpColDelim);
+				}).get().join(tmpRowDelim)
+					.split(tmpRowDelim).join(rowDelim)
+					.split(tmpColDelim).join(colDelim) + rowDelim +
+				body.map(function (i, row) {
+					var cols = $(row).find('td');
+					return cols.map(function (j, col) {
+						var cont = $(col).text();
+						return cont.replace('"', '""');
+					}).get().join(tmpColDelim);
+				}).get().join(tmpRowDelim)
+					.split(tmpRowDelim).join(rowDelim)
+					.split(tmpColDelim).join(colDelim);
+
+				headers = $('#frameTable').find('thead > tr');
+				body = $('#frameTable').find('tbody > tr');
+
+				csv = csv + rowDelim + rowDelim + headers.map(function (i, row) {
+					var cols = $(row).find('th');
+					return cols.map(function (j, col) {
+						var cont = $(col).text();
+						return cont.replace('"', '""');
+					}).get().join(tmpColDelim);
+				}).get().join(tmpRowDelim)
+					.split(tmpRowDelim).join(rowDelim)
+					.split(tmpColDelim).join(colDelim) + rowDelim +
+				body.map(function (i, row) {
+					var cols = $(row).find('td > input');
+					return cols.map(function (j, col) {
+						var cont = $(col).val();
+						return cont.replace('"', '""');
+					}).get().join(tmpColDelim);
+				}).get().join(tmpRowDelim)
+					.split(tmpRowDelim).join(rowDelim)
+					.split(tmpColDelim).join(colDelim);
+
+				//csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+				console.log(csv);
+				var shot = $('#name').text(),
+				jid = $('#job_id').text(),
+				file = "frameDetail_"+shot+"_"+jid;
+				write_csv(csv, file);
+			}
+
+			function write_csv(csv, file){
+				var a = document.createElement('a');
+				a.download = file+".csv";
+				a.href = "data:application/octet-stream;base64," + btoa(csv);
+				a.click();
+			}
+
+
+			$(document).ready(function (){
+				var now = new Date();
+				$('#date').html(("0" + now.getDate()).slice(-2)+' - '+("0" + (now.getMonth()+1)).slice(-2)+' - '+now.getFullYear());
+				$('.datepickBox').datepick({
+					yearRange: "-1:+1",
+					dateFormat: 'dd-M-yyyy',
+					numberOfMonths: 1,
+					onSelect: function (selected, evnt) {
+						//updateReport(selected);
+						return;
+					}
+				});
+
+				//dates("default");
+				//$('#pre').datepicker({
+				//	dateFormat: "dd/mm/yy",
+				//	changeMonth: true,
+				//	changeYear: true
+				//});
+				setClient();
+				//$('#shotReport').on('click', function(){
+				//	export_shots_to_csv.apply();
+				//});
+				//$('#frameReport').on('click', function(){
+				//	export_frames_to_csv.apply();
+				//});
+			});
+			
+		</script> 
+		date<style>
+			*{
+				margin: 0 auto 0 auto;
+			}
+
+			header{
+				width: 100%;
+				height: 90px;
+				font-size: 25px;
+				display: inline-block;
+				padding: 1px;
+				margin: auto;
+			}
+			.logoleft{
+				float: left;
+				text-align: left;
+				width: auto;
+				padding: 2px;
+				height:80px;
+				margin:5px;
+			}
+			#heading{
+				vertical-align: super;
+				color: white;
+				padding: 20px 0 0 20px;
+				font-weight: bold;
+				
+			}
+			
+			body{
+				width: 99%;
+				color: #333;
+				background-color: #0a0a0a;
+				padding: 0;
+				margin: auto;
+				font-size: .80em;
+				font-family: Arial, Helvetica;
+			}
+			
+			#infoSheet{
+				display: block;
+				padding: 8px;
+				background-color:rgb(75, 80, 83);
+				border: solid 1px rgb(46, 41, 32);
+				clear: both;
+				margin: 5px;
+			}
+			#infoHead{
+				padding: 0 15px 0 15px;
+				font-weight: bold;
+				font-size: 18px;
+				margin-left: 40%;
+				color: white;
+			}
+			#info1{
+				padding: 8px;
+				clear: both;
+				margin: 5px;
+				color: white;
+			}
+			#date{
+				padding: 0 15px 0 15px;
+				font-weight: bold;
+				font-size: 13px;
+				margin-left: 5%;
+				color: white;
+			}
+			
+			section{
+				display: block;
+				background: rgb(190, 186, 186);
+				border-radius: 10px;
+				/*overflow-y: scroll;*/
+				padding: 15px;
+				margin: 8px;
+				height: 83em;
+				clear: both;
+			}
+			
+			.cluster{
+				padding:1em;
+				clear:both;
+			}
+			.info_input{
+				height:3em;
+				line-height:3em;
+				position:relative;
+				/*margin-left: 5em;*/
+			}
+			.info_left{
+				width:10em;
+				text-align:right;
+				margin: 0 2em;
+				font-weight:bold;
+			}
+			.info_right{
+				display: inline-block;
+				float: right;
+				/*margin: 0 20em;*/
+				width: 62%;
+			}
+			.info_thick{
+				width: 99%;
+				line-height:1.5em;
+				border: solid 1px black;
+			}
+			 .info_table{
+				border-radius:5px;
+				font-weight: bold;
+				width: 100%;
+				/*height: 52em;*/
+
+			}
+			.info_table th{
+				background-color: rgb(134, 134, 134);
+				color: whitesmoke;
+				text-align: center;
+				height: 1.5em;
+			}
+			.info_table td{
+				width:255px;
+				background-color: #E2E1E1;
+				text-align: center;
+				height: 1.5em;
+			}
+			.tab_info{
+				width: 99%;
+				background: transparent;
+				border: none;
+				outline: 0;
+				text-align: center;
+				font-weight: bold;
+			}
+
+			#attn_time{
+				display: none;
+				position: absolute;
+				top: 25%;
+				left: 60%;
+				margin-left: -30%;
+				/*margin-top: -100px;*/
+				padding: 10px;
+				z-index: 1002;
+				background: rgb(190, 186, 186);
+				width:40%;
+				border:solid 4px rgb(255, 242, 242);
+				border-radius: 5px;
+				margin-top: 2em;
+			}
+			#fade{
+				display: none;
+				position: fixed;
+				top: 0%;
+				left: 0%;
+				width: 100%;
+				height: 100%;
+				background-color: #000;
+				z-index:1001;
+				-moz-opacity: 0.7;
+				opacity:.70;
+				filter: alpha(opacity=70);
+			}
+
+			.SubR{
+				width: 10em;
+				height: 2em;
+				border-radius: 5px;
+				float: right;
+				/*margin-left: 20%;*/
+				margin-top: 1%;
+				background: darkslategray;/*rgb(75, 80, 83);*/
+				color: whitesmoke;
+				font-weight: bold;
+			}
+
+			#pre, #nxt{
+				border-color: rgb(174, 179, 173);
+				border-style: Solid;
+				border-radius: 5em;
+				height: 10px;
+				width: 10px;
+				vertical-align: middle;
+				margin-left: -20px;
+				margin-bottom: 3px;
+			}
+
+
+			label{
+				margin: 0 2px;
+				font-weight: bold;
+				color: #006464;/*darkcyan;*/
+			}
+
+			footer{
+				height: 2em;
+				z-index: 1;
+				color: rgb(255, 252, 190);
+				font-family: Arial, Helvetica;
+				font-size: 1em;
+				margin-left: 5%;
+			}
+			
+			table tbody .odd td {
+				background-color: white;
+			}
+			table tbody .even td {
+				background-color: #E2E1E1;
+			}
+			.datepick{
+				width: 150px;
+				background:cyan;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="main-container" class="page" style="position:relative;">
+			<header>
+				<div class="logoleft">
+					<span id="heading">Barajoun Entertainment</span>
+				</div>
+			</header>
+			<div id="infoSheet">
+				<span id="infoHead">Render Info Sheet</span>
+			</div>
+			<div id="info1">
+				<span id="date"></span>
+			</div>
+			<section>
+				</br>
+				<div style="width:90%;" >
+					<div style="display:block;">
+						<div class="cluster">
+							<select class="info_left" style="margin-left:0;" id="server" onchange="setClient()"><option selected>lic</option><option>fox</option></select>
+							<table style="margin:1em 0; font-weight:bold; width:50em;"><tr>
+								<td><span style="color:#006464;">Start Date: </span></td>
+								<td><input id="date1" class="datepickBox" type="text"/><input id="pre" type="image" src="../media/Images/previous.png" /></td>
+								<td><span style="color:#006464;">End Date: </span></td>
+								<td><input id="date2" class="datepickBox" type="text"/><input id="nxt" type="image" src="../media/Images/next.png" /></td>
+							</table>
+							<!--<input class="info_left" type="date" id="pre1" /><input class="datepicker" />-->
+						</div>
+						<div class="cluster">
+							<!--<input class="info_left" type="text" id="user_info" placeholder="user seq scn shot" />-->
+							<label>User:</label><input class="info_left" type="text" id="user_info" placeholder="" />
+							<label>Sequence:</label><input class="info_left" type="text" id="seq_info" placeholder="" />
+							<label>Scene:</label><input class="info_left" type="text" id="scn_info" placeholder="" />
+							<label>Shot:</label><input class="info_left" type="text" id="shot_info" placeholder="" />
+							<button class="SubR" type="submit" style="margin-top:0; margin-right:28%;" onclick="draw_table()">Get list</button>
+						</div>
+						<div class="cluster">
+							<label>Total Render Time:</label><input class="info_left" type="text" id="return_info_tottime" disabled />
+							<label>Average Render Time:</label><input class="info_left" type="text" id="return_info_avgtime" disabled />
+							<label>Total Frames Render:</label><input class="info_left" type="text" id="return_info_totframe" disabled />
+							<label>Times Render:</label><input class="info_left" type="text" id="return_info_totrender" disabled />
+                                                        <button class="SubR" type="submit" style="margin-top:0; margin-right:5%; float:none;" onclick="feed_info()">Get info</button>
+						</div>
+						<div class="cluster" style="height:70em; overflow-y:scroll;" >
+							<table class="info_table" style="height=52em;" id="shotTable">
+								<thead>
+									<tr><th colspan=4>Jobs</th></tr>
+									<tr><th>Title</th><th>Owner</th><th>Job id</th><th>Frames</th></tr>
+									<!--<th>Total Render Time</th><th>Average Render Time</th>-->
+								</thead>
+								<tbody style="overflow-y:scroll">
+								</tbody>
+							</table>
+							<div>
+								  <button class="SubR" type="submit" id="shotReport" onclick="export_shots_to_csv.apply()">Export to CSV</button>
+							</div>
+						</div>
+						</hr>
+						<div id="attn_time" class="cluster" style="max-height:60em; overflow-y:scroll;" >
+							<table class="info_table" style="height:4em;" id="frameInfoTable">
+								<thead>
+									<tr><th>Title</th><th>Owner</th><th>Job id</th><th>Frames</th><th>Total Render Time</th><th>Average Render Time</th></tr>
+								</thead>
+								<tbody>
+									<tr class="odd"><td id="name"></td><td id="user"></td><td id="job_id"></td><td id="frames"></td><td id="ttime"></td><td id="atime"></td></tr>
+								</tbody>
+							</table></br>
+							<table class="info_table" id="frameTable">
+								<thead>
+									<tr><th colspan=3>Frames</th></tr>
+									<tr><th>Task id</th><th>Frame</th><th>Render Time</th></tr>
+								</thead>
+								<tbody style="overflow-y:scroll">
+								</tbody>
+							</table>
+							<div>
+								  <button class="SubR" type="submit" id="frameReport" onclick="export_frames_to_csv.apply()">Export to CSV</button>
+							</div>
+						</div>
+						<div id="fade" onClick="attn_time_close();">
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<footer>
+			All information here is from tractor database.
+		</footer>
+	</body>
+</html>

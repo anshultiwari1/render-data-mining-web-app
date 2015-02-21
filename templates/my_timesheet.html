@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			My Time
+		</title>
+		<link href="../media/css/Site.css" rel="stylesheet" type="text/css" />
+		<link href="../media/css/jquery.datepick.css" rel="stylesheet" type="text/css" />
+		<style type="text/css" title="currentStyle">
+				@import "../media/DataTables/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css";
+				.ui-widget {
+					font-size: 0.8em;
+				}
+		</style>
+		<script type="text/javascript" language="javascript" src="../media/DataTables/media/js/jquery.js"></script>
+		<script src="../media/js/jquery.jsonrpc.js"></script>
+		<script src="../media/js/jquery-ui-1.10.0.min.js"></script>
+		<script src="../media/js/jquery.datepick.js" language="javascript" type="text/javascript"></script> 
+		<script type="text/javascript">
+			var oTable;
+			var rpc = $.jsonRPC.setup({
+				endPoint: 'http://10.1.122.104:8000/jsonrpc',
+				namespace: ''
+			});
+			var url = 'http://10.1.122.104:8000/jsonrpc';
+			var today;
+			var daterange = []
+			var lastWeekOff  = new Date("1970-01-01");
+			var month_dict = {"01":"Jan", "02":"Feb", "03":"Mar", "04":"Apr", "05":"May", "06":"Jun", "07":"Jul", "08":"Aug", "09":"Sep", "10":"Oct", "11":"Nov", "12":"Dec"};
+			var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+			var dict_month = {"Jan":"01", "Feb":"02", "Mar":"03", "Apr":"04", "May":"05", "Jun":"06", "Jul":"07", "Aug":"08", "Sep":"09", "Oct":"10", "Nov":"11", "Dec":"12"};
+			
+			$(document).ready(function () {
+				login = "{{login}}"
+				$("#NavigationMenu").load("/media/template/navLevel1.html", function(){
+					$("#NavigationMenuL2").load("/media/template/navLevel2.html", function(){
+						$("#NavigationMenu > .level1 > li:nth-child(1)").css("border", "solid 1px rgb(197, 211, 218)");
+						$("#NavigationMenu > .level1 > li:nth-child(1)>a").css("background-color", "rgb(152, 165, 177)");
+					});
+				});
+				$(".main, .navheader").children().not('.clear').mouseenter(function(){toggleMenu('none')});
+				$('#nextdate').click(function () {
+					var date1 = $("#date1").val();
+					var date = new Date(date1);
+					date.setMonth(date.getMonth()+1);
+					var month = ("0" + (date.getMonth()+1)).slice(-2);
+					var day = ("0" + (date.getDate())).slice(-2);
+					$("#date1").val(date.getFullYear()+"-"+month_dict[month]+"-"+day);
+					var d = new Date(date.getFullYear(), date.getMonth()+1, 0);
+					var month = ("0" + (d.getMonth()+1)).slice(-2);
+					var day = ("0" + (d.getDate())).slice(-2);
+					$("#date2").val(d.getFullYear()+"-"+month_dict[month]+"-"+day);
+				});
+				$('#previousdate').click(function () {
+					var date1 = $("#date1").val();
+					var date = new Date(date1);
+					date.setMonth(date.getMonth()-1);
+					var month = ("0" + (date.getMonth()+1)).slice(-2);
+					var day = ("0" + (date.getDate())).slice(-2);
+					$("#date1").val(date.getFullYear()+"-"+month_dict[month]+"-"+day);
+					var d = new Date(date.getFullYear(), date.getMonth()+1, 0);
+					var month = ("0" + (d.getMonth()+1)).slice(-2);
+					var day = ("0" + (d.getDate())).slice(-2);
+					$("#date2").val(d.getFullYear()+"-"+month_dict[month]+"-"+day);
+				});
+				var browserH = screen.availHeight - 120;
+				$(".page").css("height", browserH + "px");
+				$('.datepickBox').datepick({
+					yearRange: "-5:+10",
+					dateFormat: 'yyyy-M-dd',
+					numberOfMonths: 1,
+					onSelect: function (selected, evnt) {
+						//updateReport(selected);
+						return;
+					}
+				});
+				var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+				var firstDay = new Date(y, m, 1);
+				var lastDay = new Date(y, m + 1, 0);
+				var month = ("0" + (firstDay.getMonth()+1)).slice(-2);
+				//var day = firstDay.getDate();
+				today = date.getFullYear()+"-"+("0" + (date.getMonth()+1)).slice(-2)+"-"+("0" + (date.getDate())).slice(-2); 
+				var day_one = firstDay.getFullYear()+"-"+month_dict[month]+"-"+("0" + (firstDay.getDate())).slice(-2); 
+				var day_last = lastDay.getFullYear()+"-"+month_dict[month]+"-"+("0" + (lastDay.getDate())).slice(-2); 
+				$("#date1").val(day_one);
+				$("#date2").val(day_last);
+				var date1 = $("#date1").val().split("-");
+				var date2 = $("#date2").val().split("-");
+			});
+
+			function userinfo(date1, date2){
+				$("#loading").html("Please wait... &nbsp;<img style='display: inline-block;vertical-align: middle;' src='../media/Images/loading.gif' />");
+			}
+			
+		</script> 
+	</head>
+	<body>
+		<div id="main-container" class="page">
+			<div style="float:left;color: black;text-align: center;font-weight:bold;margin-left:30%">
+				<table>
+					<tr>
+						<td><span style="color:white;">From: </span> </td>
+						<td><input id="date1" class="datepickBox" type="text" name="fname"/></td>
+						<td><span style="color:white;">&nbsp;&nbsp;&nbsp; To: </span></td>
+						<td><input id="date2" class="datepickBox" type="text" name="fname"/><input id ="nextdate" type="image" src="../media/Images/next.png" style="border-color: rgb(174, 179, 173);border-style: Solid;border-radius: 5em 5em 5em 5em;height: 10px;width: 10px;vertical-align: middle;margin-left: -20px;margin-bottom: 3px;" /></td>
+						<td><div id="loading" style="display: inline-block;vertical-align: middle;"></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

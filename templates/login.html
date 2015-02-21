@@ -1,0 +1,238 @@
+<!--
+Author  : Anshul Tiwari
+Date    : Jan 22, 2015
+
+Description : Shot List Page.
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Shot Info
+		</title>
+		<link rel="shortcut icon" href="../media/Images/favicon.ico" />
+		<!-- <link href="../media/css/Site.css" rel="stylesheet" type="text/css" /> -->
+		<script src="../media/js/jquery-1.10.2.min.js" language="javascript" type="text/javascript"></script>
+		<script src="../media/js/jquery.jsonrpc.js"></script>
+		<script type="text/javascript">
+			var rpc = $.jsonRPC.setup({
+				endPoint: 'http://127.0.0.1:8000/jsonrpc',
+				namespace: ''
+			});
+			var url = 'http://127.0.0.1:8000/jsonrpc';
+
+			$(document).ready(function (){
+				var now =	new Date();
+				$('#date').html(("0" + now.getDate()).slice(-2)+' - '+("0" + (now.getMonth()+1)).slice(-2)+' - '+now.getFullYear());
+			});
+			
+		</script> 
+		<style>
+			*{
+				margin: 0 auto 0 auto;
+			}
+
+			header{
+				width: 100%;
+				height: 90px;
+				font-size: 25px;
+				display: inline-block;
+				padding: 1px;
+				margin: auto;
+			}
+			.logoleft{
+				float: left;
+				text-align: left;
+				width: auto;
+				padding: 2px;
+				height:80px;
+				margin:5px;
+			}
+			#heading{
+				vertical-align: super;
+				color: white;
+				padding: 20px 0 0 20px;
+				font-weight: bold;
+				
+			}
+			
+			body{
+				width: 99%;
+				color: #333;
+				background-color: #0a0a0a;
+				padding: 0;
+				margin: auto;
+				font-size: .80em;
+				font-family: Arial, Helvetica;
+			}
+			
+			#infoSheet{
+				display: block;
+				padding: 8px;
+				background-color:rgb(75, 80, 83);
+				border: solid 1px rgb(46, 41, 32);
+				clear: both;
+				margin: 5px;
+			}
+			#infoHead{
+				padding: 0 15px 0 15px;
+				font-weight: bold;
+				font-size: 18px;
+				margin-left: 40%;
+				color: white;
+			}
+			#info1{
+				padding: 8px;
+				clear: both;
+				margin: 5px;
+				color: white;
+			}
+			#date{
+				padding: 0 15px 0 15px;
+				font-weight: bold;
+				font-size: 13px;
+				margin-left: 5%;
+				color: white;
+			}
+			
+			section{
+				display: block;
+				background: rgb(190, 186, 186);
+				border-radius: 10px;
+				/*overflow-y: scroll;*/
+				padding: 15px;
+				margin: 8px;
+				height: 58em;
+				clear: both;
+			}
+			
+			.cluster{
+				padding:1em;
+				clear:both;
+			}
+			.info_input{
+				height:3em;
+				line-height:3em;
+				position:relative;
+				/*margin-left: 5em;*/
+			}
+			.info_left{
+				width:10em;
+				text-align:right;
+				margin: 0 2em;
+				font-weight:bold;
+			}
+			.info_right{
+				display: inline-block;
+				float: right;
+				/*margin: 0 20em;*/
+				width: 62%;
+			}
+			.info_thick{
+				width: 99%;
+				line-height:1.5em;
+				border: solid 1px black;
+			}
+			 .info_table{
+				border-radius:5px;
+				font-weight: bold;
+				width: 100%;
+
+			}
+			.info_table th{
+				background-color: rgb(134, 134, 134);
+				color: whitesmoke;
+				text-align: center;
+				height: 1.5em;
+			}
+			.info_table td{
+				width:255px;
+				background-color: #E2E1E1;
+				text-align: center;
+				height: 1.5em;
+			}
+			.tab_info{
+				width: 99%;
+				background: transparent;
+				border: none;
+				outline: 0;
+				text-align: center;
+				font-weight: bold;
+			}
+
+			#attn_time{
+				display: none;
+				position: absolute;
+				top: 35%;
+				left: 60%;
+				margin-left: -30%;
+				/*margin-top: -100px;*/
+				padding: 10px;
+				z-index: 1002;
+				background: rgb(190, 186, 186);
+				width:40%;
+				border:solid 4px rgb(255, 242, 242);
+				border-radius: 5px;
+				margin-top: 2em;
+			}
+			#fade{
+				display: none;
+				position: fixed;
+				top: 0%;
+				left: 0%;
+				width: 100%;
+				height: 100%;
+				background-color: #000;
+				z-index:1001;
+				-moz-opacity: 0.7;
+				opacity:.70;
+				filter: alpha(opacity=70);
+			}
+
+			.SubR{
+				width: 5em;
+				border-radius: 5px;
+				float: left;
+				margin-left: 20%;
+				margin-top: 1%;
+			}
+			
+			footer{
+				height: 2em;
+				z-index: 1;
+				color: rgb(255, 252, 190);
+				font-family: Arial, Helvetica;
+				font-size: 1em;
+				margin-left: 5%;
+			}
+			
+			table tbody .odd td {
+				background-color: white;
+			}
+			table tbody .even td {
+				background-color: #E2E1E1;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="main-container" class="page" style="position:relative;">
+			<header>
+				<div class="logoleft">
+					<span id="heading">Barajoun Entertainment</span>
+				</div>
+			</header>
+			<div id="infoSheet">
+				<span id="infoHead">Shot Info Sheet</span>
+			</div>
+			<div id="info1">
+				<span id="date"></span>
+			</div>
+			<section>
+			</section>
+		</div>
+		<footer>
+			All information here is superficial.
+		</footer>
+	</body>
+</html>

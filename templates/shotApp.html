@@ -14,8 +14,8 @@ Description : Shot List Page.
 		<!-- <link href="../media/css/Site.css" rel="stylesheet" type="text/css" /> -->
 		<link href="../media/css/jquery.datepick.css" rel="stylesheet" type="text/css" />
 		<script src="../media/js/jquery-1.10.2.min.js" language="javascript" type="text/javascript"></script>
-		<script src="../media/js/jquery.jsonrpc.js"></script>
-		<script src="../media/js/jquery-ui-1.10.0.min.js"></script>
+		<script src="../media/js/jquery.jsonrpc.js" language="javascript" type="text/javascript"></script>
+		<script src="../media/js/jquery-ui-1.10.0.min.js" language="javascript" type="text/javascript"></script>
 		<script src="../media/js/jquery.datepick.js"></script>
 		<script type="text/javascript">
                         var url = '/jsonrpc';
@@ -23,6 +23,7 @@ Description : Shot List Page.
 				endPoint: url,
 				namespace: ''
 			});
+			var month_dict = {"1":"Jan", "2":"Feb", "3":"Mar", "4":"Apr", "5":"May", "6":"Jun", "7":"Jul", "8":"Aug", "9":"Sep", "10":"Oct", "11":"Nov", "12":"Dec"};
 
 			function setClient(){
 				var server = $('#server').val();
@@ -43,9 +44,17 @@ Description : Shot List Page.
 
 			function draw_table(){
 				//var server = $('#server').val();
-                                // loader -- Please wait
-				var feed = {"user":$('#user_info').val(), "seq":$('#seq_info').val(), "scn":$('#scn_info').val(), "shot":$('#shot_info').val()};
+				if ($('#date1').val()=="") {	var start_date = "";}
+				else {	var date1 = new Date($('#date1').val()),
+					start_date = (date1.getMonth()+1)+'/'+date1.getDate()+'/'+date1.getFullYear();
+				}
+				if ($('#date2').val()=="") {	var end_date = "";}
+				else {	var date2 = new Date($('#date2').val()),
+					end_date = (date2.getMonth()+1)+'/'+date2.getDate()+'/'+date2.getFullYear();
+				}
+				var feed = {"start_date":start_date, "end_date":end_date, "user":$('#user_info').val(), "seq":$('#seq_info').val(), "scn":$('#scn_info').val(), "shot":$('#shot_info').val()};
 				//console.log(feed);
+                                // loader -- Please wait
 				rpc.batchRequest([
 					{method: 'getShotList', params: [feed]}
 				], {
@@ -115,22 +124,17 @@ Description : Shot List Page.
 			}
 
 
-			function dates(days){
-				var today, day1, day2;
-				if(days == "default"){
-				      today = new Date();
-				      day1 = new Date((today.setDate(today.getDate()-5)));
-				      //$('#pre').html(today);
-				} else {
-				      today = new Date(($('#pre').html()));
-				      day1 = new Date((today.setDate(today.getDate()-5)));
-				}
-			}
-
-
 			function feed_info(){
 				//var feed = $('#user_info').val();
-				var feed = {"user":$('#user_info').val(), "seq":$('#seq_info').val(), "scn":$('#scn_info').val(), "shot":$('#shot_info').val()};
+				if ($('#date1').val()=="") {	var start_date = "";}
+				else {	var date1 = new Date($('#date1').val()),
+					start_date = (date1.getMonth()+1)+'/'+date1.getDate()+'/'+date1.getFullYear();
+				}
+				if ($('#date2').val()=="") {	var end_date = "";}
+				else {	var date2 = new Date($('#date2').val()),
+					end_date = (date2.getMonth()+1)+'/'+date2.getDate()+'/'+date2.getFullYear();
+				}
+				feed = {"start_date":start_date, "end_date":end_date, "user":$('#user_info').val(), "seq":$('#seq_info').val(), "scn":$('#scn_info').val(), "shot":$('#shot_info').val()};
 				rpc.batchRequest([
 					{method: 'getAllJobsTime', params: [feed]}
 				], {
@@ -196,7 +200,7 @@ Description : Shot List Page.
 					.split(tmpColDelim).join(colDelim) + '"';
 
 				//csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
-				console.log(csv);
+				//console.log(csv);
 				var server = $('#server').val(),
 				today = new Date().toDateString().split(" ").join("-"),
 				file = "shotlist_"+server+"_"+today;
@@ -253,10 +257,10 @@ Description : Shot List Page.
 					}).get().join(tmpColDelim);
 				}).get().join(tmpRowDelim)
 					.split(tmpRowDelim).join(rowDelim)
-					.split(tmpColDelim).join(colDelim);
+					.split(tmpColDconfigelim).join(colDelim);
 
 				//csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
-				console.log(csv);
+				//console.log(csv);
 				var shot = $('#name').text(),
 				jid = $('#job_id').text(),
 				file = "frameDetail_"+shot+"_"+jid;
@@ -283,24 +287,27 @@ Description : Shot List Page.
 						return;
 					}
 				});
-
-				//dates("default");
-				//$('#pre').datepicker({
-				//	dateFormat: "dd/mm/yy",
-				//	changeMonth: true,
-				//	changeYear: true
-				//});
+				$('#pre').click(function(){
+					if ($('#date1').val()!=""){
+						var date = new Date($('#date1').val());
+						date.setDate(date.getDate()-1)
+						var date1 = ("0" + (date.getDate())).slice(-2)+'-'+month_dict[date.getMonth()+1]+'-'+date.getFullYear();
+						$('#date1').val(date1);
+					}
+				});
+				$('#nxt').click(function(){
+					if ($('#date2').val()!=""){
+						var date = new Date($('#date2').val());
+						date.setDate(date.getDate()+1)
+						var date2 = ("0" + (date.getDate())).slice(-2)+'-'+month_dict[date.getMonth()+1]+'-'+date.getFullYear();
+						$('#date2').val(date2);
+					}
+				});
 				setClient();
-				//$('#shotReport').on('click', function(){
-				//	export_shots_to_csv.apply();
-				//});
-				//$('#frameReport').on('click', function(){
-				//	export_frames_to_csv.apply();
-				//});
 			});
 			
 		</script> 
-		date<style>
+		<style>
 			*{
 				margin: 0 auto 0 auto;
 			}
@@ -486,9 +493,22 @@ Description : Shot List Page.
 				margin-bottom: 3px;
 			}
 
+			.filter_table{
+				margin: 1em 0;
+				border: 1px solid #006464;/*#5E9C9C;*/
+				border-radius: 5px;
+				background: rgb(157, 157, 157);/*rgb(194, 188, 180);*/
+			}
+			.filter_table tr{
+				margin: 2em 0;
+			}
+			.filter_table td{
+				width: 60em;
+				height: 2em;
+				text-align: left;
+			}
 
 			label{
-				margin: 0 2px;
 				font-weight: bold;
 				color: #006464;/*darkcyan;*/
 			}
@@ -507,10 +527,6 @@ Description : Shot List Page.
 			}
 			table tbody .even td {
 				background-color: #E2E1E1;
-			}
-			.datepick{
-				width: 150px;
-				background:cyan;
 			}
 
 		</style>
@@ -533,31 +549,40 @@ Description : Shot List Page.
 				<div style="width:90%;" >
 					<div style="display:block;">
 						<div class="cluster">
-							<select class="info_left" style="margin-left:0;" id="server" onchange="setClient()"><option selected>lic</option><option>fox</option></select>
-							<table style="margin:1em 0; font-weight:bold; width:50em;"><tr>
-								<td><span style="color:#006464;">Start Date: </span></td>
-								<td><input id="date1" class="datepickBox" type="text"/><input id="pre" type="image" src="../media/Images/previous.png" /></td>
-								<td><span style="color:#006464;">End Date: </span></td>
-								<td><input id="date2" class="datepickBox" type="text"/><input id="nxt" type="image" src="../media/Images/next.png" /></td>
+							<label style="margin-left:5px;">Select server: </label><select class="info_left" style="margin-left:8em;" id="server" onchange="setClient()"><option selected>lic</option><option>fox</option></select>
+							<table class="filter_table">
+								<tr>
+								      <td><label>Start Date: </label></td>
+								      <td><input id="date1" class="datepickBox" type="text"/><input id="pre" type="image" src="../media/Images/previous.png" /></td>
+								      <td><label>End Date: </label></td>
+								      <td><input id="date2" class="datepickBox" type="text"/><input id="nxt" type="image" src="../media/Images/next.png" /></td>
+								</tr>
+								<tr>
+								      <td><label>User: </label></td>
+								      <td><input type="text" id="user_info"/></td>
+								      <td><label>Sequence: </label></td>
+								      <td><input type="text" id="seq_info"/></td>
+								      <td><label>Scene: </label></td>
+								      <td><input type="text" id="scn_info"/></td>
+								      <td><label>Shot: </label></td>
+								      <td><input type="text" id="shot_info"/></td>
+								      <td><button class="SubR" type="submit" style="margin-top:0; margin-right:5%;" onclick="draw_table()">Get list</button></td>
+								</tr>
+								<tr>
+								      <td><label>Total Render Time:</label></td>
+								      <td><input type="text" id="return_info_tottime" disabled /></td>
+								      <td><label>Average Render Time:</label></td>
+								      <td><input type="text" id="return_info_avgtime" disabled /></td>
+								      <td><label>Total Frames Render:</label></td>
+								      <td><input type="text" id="return_info_totframe" disabled /></td>
+								      <td><label>Times Render:</label></td>
+								      <td><input type="text" id="return_info_totrender" disabled /></td>
+								      <td><button class="SubR" type="submit" style="margin-top:0; margin-right:5%;" onclick="feed_info()">Get info</button></td>
+
+								</tr>
 							</table>
-							<!--<input class="info_left" type="date" id="pre1" /><input class="datepicker" />-->
 						</div>
-						<div class="cluster">
-							<!--<input class="info_left" type="text" id="user_info" placeholder="user seq scn shot" />-->
-							<label>User:</label><input class="info_left" type="text" id="user_info" placeholder="" />
-							<label>Sequence:</label><input class="info_left" type="text" id="seq_info" placeholder="" />
-							<label>Scene:</label><input class="info_left" type="text" id="scn_info" placeholder="" />
-							<label>Shot:</label><input class="info_left" type="text" id="shot_info" placeholder="" />
-							<button class="SubR" type="submit" style="margin-top:0; margin-right:28%;" onclick="draw_table()">Get list</button>
-						</div>
-						<div class="cluster">
-							<label>Total Render Time:</label><input class="info_left" type="text" id="return_info_tottime" disabled />
-							<label>Average Render Time:</label><input class="info_left" type="text" id="return_info_avgtime" disabled />
-							<label>Total Frames Render:</label><input class="info_left" type="text" id="return_info_totframe" disabled />
-							<label>Times Render:</label><input class="info_left" type="text" id="return_info_totrender" disabled />
-                                                        <button class="SubR" type="submit" style="margin-top:0; margin-right:5%; float:none;" onclick="feed_info()">Get info</button>
-						</div>
-						<div class="cluster" style="height:70em; overflow-y:scroll;" >
+						<div class="cluster" style="height:66em; overflow-y:scroll;" >
 							<table class="info_table" style="height=52em;" id="shotTable">
 								<thead>
 									<tr><th colspan=4>Jobs</th></tr>

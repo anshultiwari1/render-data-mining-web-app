@@ -63,36 +63,134 @@ def getShotList(info):
   #jobslist = {'title': 'seq_scn_sho_ver', 'owner': 'me', 'range': '1001-1201', 'time': '00:00:00'}
   #jobslist = tq.jobs("done and stoptime >-1d", columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
   print info
-  if info["user"] == "":
-    if info["seq"] == "": # default case
-      jobslist = tq.jobs("done and stoptime >-1d", columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-      print "default"
-    else:
-      if info["scn"] == "":
-	jobslist = tq.jobs("title like seq{0}_ and done and stoptime >-1d".format(info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	print "only seq"
-      else:
-	if info["shot"] == "":
-	  jobslist = tq.jobs("title like seq{0}_scn{1}_ and done and stoptime >-1d".format(info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	  print "seq and scn"
+  if info["end_date"] == "":
+    if info["start_date"] == "":
+      if info["user"] == "":
+	if info["seq"] == "": # default case
+	  jobslist = tq.jobs("done and stoptime >-1d", columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "default"
 	else:
-	  jobslist = tq.jobs("title like seq{1}_scn{2}_sh{3} and done and stoptime >-1d".format(info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	  print "seq, scn and shot"
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("title like seq{0}_ and done and stoptime >-1d".format(info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "only seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("title like seq{0}_scn{1}_ and done and stoptime >-1d".format(info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "seq and scn"
+	    else:
+	      jobslist = tq.jobs("title like seq{1}_scn{2}_sh{3} and done and stoptime >-1d".format(info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "seq, scn and shot"
+      else:
+	if info["seq"] == "":
+	  jobslist = tq.jobs("owner={0} and done and stoptime >-1d".format(info["user"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "only user"
+	else:
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("owner={0} and title like seq{1}_ and done and stoptime >-1d".format(info["user"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "user and seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("owner={0} and title like seq{1}_scn{2}_ and done and stoptime >-1d".format(info["user"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "user, seq and scn"
+	    else:
+	      jobslist = tq.jobs("owner={0} and title like seq{1}_scn{2}_sh{3} and done and stoptime >-1d".format(info["user"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "user, seq, scn and shot"
+    else:
+      if info["user"] == "":
+	if info["seq"] == "":
+	  jobslist = tq.jobs("done and stoptime >{0}".format(info["start_date"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "only start_date"
+	else:
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("title like seq{1}_ and done and stoptime >{0}".format(info["start_date"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "start_date and seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("title like seq{1}_scn{2}_ and done and stoptime >{0}".format(info["start_date"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, seq and scn"
+	    else:
+	      jobslist = tq.jobs("title like seq{1}_scn{2}_sh{3} and done and stoptime >{0}".format(info["start_date"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, seq, scn and shot"
+      else:
+	if info["seq"] == "":
+	  jobslist = tq.jobs("owner={1} and done and stoptime >{0}".format(info["start_date"], info["user"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "start_date and user"
+	else:
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("owner={1} and title like seq{2}_ and done and stoptime >{0}".format(info["start_date"], info["user"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "start_date, user and seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("owner={1} and title like seq{2}_scn{3}_ and done and stoptime >{0}".format(info["start_date"], info["user"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, user, seq and scn"
+	    else:
+	      jobslist = tq.jobs("owner={1} and title like seq{2}_scn{3}_sh{4} and done and stoptime >{0}".format(info["start_date"], info["user"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, user, seq, scn and shot"
+
   else:
-    if info["seq"] == "":
-      jobslist = tq.jobs("owner={0} and done and stoptime >-1d".format(info["user"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-      print "only user"
-    else:
-      if info["scn"] == "":
-	jobslist = tq.jobs("owner={0} and title like seq{1}_ and done and stoptime >-1d".format(info["user"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	print "only user and seq"
-      else:
-	if info["shot"] == "":
-	  jobslist = tq.jobs("owner={0} and title like seq{1}_scn{2}_ and done and stoptime >-1d".format(info["user"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	  print "user, seq and scn"
+    if info["start_date"] == "":
+      if info["user"] == "":
+	if info["seq"] == "":
+	  jobslist = tq.jobs("done and stoptime <{0}".format(info["end_date"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "only end_date"
 	else:
-	  jobslist = tq.jobs("owner={0} and title like seq{1}_scn{2}_sh{3} and done and stoptime >-1d".format(info["user"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	  print "user, seq, scn and shot"
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("title like seq{1}_ and done and stoptime <{0}".format(info["end_date"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "only seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("title like seq{1}_scn{2}_ and done and stoptime <{0}".format(info["end_date"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "seq and scn"
+	    else:
+	      jobslist = tq.jobs("title like seq{1}_scn{2}_sh{3} and done and stoptime <{0}".format(info["end_date"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "seq, scn and shot"
+      else:
+	if info["seq"] == "":
+	  jobslist = tq.jobs("owner={1} and done and stoptime <{0}".format(info["end_date"], info["user"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "only user"
+	else:
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("owner={1} and title like seq{2}_ and done and stoptime <{0}".format(info["end_date"], info["user"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "user and seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("owner={1} and title like seq{2}_scn{3}_ and done and stoptime <{0}".format(info["end_date"], info["user"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "user, seq and scn"
+	    else:
+	      jobslist = tq.jobs("owner={1} and title like seq{2}_scn{3}_sh{4} and done and stoptime <{0}".format(info["end_date"], info["user"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "user, seq, scn and shot"
+    else:
+      if info["user"] == "":
+	if info["seq"] == "":
+	  jobslist = tq.jobs("done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "only start_date"
+	else:
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("title like seq{2}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "start_date and seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("title like seq{2}_scn{3}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, seq and scn"
+	    else:
+	      jobslist = tq.jobs("title like seq{2}_scn{3}_sh{4} and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, seq, scn and shot"
+      else:
+	if info["seq"] == "":
+	  jobslist = tq.jobs("owner={2} and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	  print "start_date and user"
+	else:
+	  if info["scn"] == "":
+	    jobslist = tq.jobs("owner={2} and title like seq{3}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	    print "start_date, user and seq"
+	  else:
+	    if info["shot"] == "":
+	      jobslist = tq.jobs("owner={2} and title like seq{3}_scn{4}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, user, seq and scn"
+	    else:
+	      jobslist = tq.jobs("owner={2} and title like seq{3}_scn{4}_sh{5} and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      print "start_date, user, seq, scn and shot"
+
 
   return jobslist
 

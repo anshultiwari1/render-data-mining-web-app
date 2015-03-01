@@ -16,7 +16,7 @@ Description : Shot List Page.
 		<script src="../media/js/jquery-1.10.2.min.js" language="javascript" type="text/javascript"></script>
 		<script src="../media/js/jquery.jsonrpc.js" language="javascript" type="text/javascript"></script>
 		<script src="../media/js/jquery-ui-1.10.0.min.js" language="javascript" type="text/javascript"></script>
-		<script src="../media/js/jquery.datepick.js"></script>
+		<script src="../media/js/jquery.datepick.js" language="javascript" type="text/javascript"></script>
 		<script type="text/javascript">
                         var url = '/jsonrpc';
 			var rpc = $.jsonRPC.setup({
@@ -44,6 +44,7 @@ Description : Shot List Page.
 
 			function draw_table(){
 				//var server = $('#server').val();
+				loading_time(1);
 				if ($('#date1').val()=="") {	var start_date = "";}
 				else {	var date1 = new Date($('#date1').val()),
 					start_date = (date1.getMonth()+1)+'/'+date1.getDate()+'/'+date1.getFullYear();
@@ -54,7 +55,6 @@ Description : Shot List Page.
 				}
 				var feed = {"start_date":start_date, "end_date":end_date, "user":$('#user_info').val(), "seq":$('#seq_info').val(), "scn":$('#scn_info').val(), "shot":$('#shot_info').val()};
 				//console.log(feed);
-                                // loader -- Please wait
 				rpc.batchRequest([
 					{method: 'getShotList', params: [feed]}
 				], {
@@ -82,12 +82,15 @@ Description : Shot List Page.
 							rowCount+=1;
 							$("#shotTable > tbody:last").append(row);
 						});
+						// loader -- Please wait
+						loading_time(0);
 					}
 				});
 			}
 
 
 			function details(jid){
+				loading_time(1);
 				rpc.batchRequest([
 					{method: 'getFrameList', params: [jid]}
 				], {
@@ -118,6 +121,7 @@ Description : Shot List Page.
 							rowCount+=1;
 							$("#frameTable > tbody:last").append(row);
 						});
+						loading_time(0);
 					}
 				});
 				attn_time_open();
@@ -125,6 +129,7 @@ Description : Shot List Page.
 
 
 			function feed_info(){
+				loading_time(1);
 				//var feed = $('#user_info').val();
 				if ($('#date1').val()=="") {	var start_date = "";}
 				else {	var date1 = new Date($('#date1').val()),
@@ -150,10 +155,24 @@ Description : Shot List Page.
 						$('#return_info_avgtime').val(result[1]);
 						$('#return_info_totframe').val(result[2]);
 						$('#return_info_totrender').val(result[3]);
+						loading_time(0);
 					}
 				});
 			}
 
+
+			function loading_time(visible){
+				if (visible) {
+					$("#loading_fade").show();
+					$("#loader").show();
+					//$("#loader").html("Please wait... &nbsp;<img style='display: inline-block;vertical-align: middle;' src='../media/Images/search.gif' />");
+				}
+				else {
+					//$("#loader").html("");
+					$("#loader").hide();
+					$("#loading_fade").hide();
+				}
+			}
 
 			function attn_time_open(){
 				window.scrollTo(0,0);
@@ -263,7 +282,7 @@ Description : Shot List Page.
 				//console.log(csv);
 				var shot = $('#name').text(),
 				jid = $('#job_id').text(),
-				file = "frameDetail_"+shot+"_"+jid;
+				file = "frameDetail_"+shot+"_"+jid;r
 				write_csv(csv, file);
 			}
 
@@ -283,10 +302,42 @@ Description : Shot List Page.
 					dateFormat: 'dd-M-yyyy',
 					numberOfMonths: 1,
 					onSelect: function (selected, evnt) {
-						//updateReport(selected);
+						if (this.id == 'date1'){
+							var minDate = new Date(selected);
+							minDate.setDate(minDate.getDate()+1);
+							$("#date2").datepick("option","minDate", minDate || null);
+						} else {
+							var maxDate = new Date(selected);
+							maxDate.setDate(maxDate.getDate()-1);
+							$("#date1").datepick("option","maxDate", maxDate || null);
+						}
 						return;
 					}
 				});
+				/*$('#date1').datepick({
+					yearRange: "-1:+1",
+					dateFormat: 'dd-M-yyyy',
+					numberOfMonths: 1,
+					onSelect: function(selected) {
+						console.log(selected);
+						var minDate = new Date(selected);
+						minDate.setDate(minDate.getDate()+1);
+						$("#date2").datepick("option","minDate", minDate || null);
+						return;
+					}
+				});
+				$('#date2').datepick({
+					yearRange: "-1:+1",
+					dateFormat: 'dd-M-yyyy',
+					numberOfMonths: 1,
+					onSelect: function(selected) {
+						var maxDate = new Date(selected);
+						maxDate.setDate(maxDate.getDate()-1);
+						$("#date1").datepick("option","maxDate", maxDate || null);
+						return;
+					}
+				});*/
+
 				$('#pre').click(function(){
 					if ($('#date1').val()!=""){
 						var date = new Date($('#date1').val());
@@ -324,7 +375,7 @@ Description : Shot List Page.
 				float: left;
 				text-align: left;
 				width: auto;
-				padding: 2px;
+				padding: 2px;r
 				height:80px;
 				margin:5px;
 			}
@@ -441,6 +492,29 @@ Description : Shot List Page.
 				font-weight: bold;
 			}
 
+			#loader{
+				display: none;
+				position: absolute;
+				top: 45%;
+				left: 48%;
+				padding: 10px;
+				z-index: 1020;
+				width:30%;
+				margin-top: 2em;
+			}
+			#loading_fade{
+				display: none;
+				position: fixed;
+				top: 0%;
+				left: 0%;
+				width: 100%;
+				height: 100%;
+				background-color: #000;
+				z-index:1001;
+				-moz-opacity: 0.7;
+				opacity:.70;
+				filter: alpha(opacity=70);
+			}
 			#attn_time{
 				display: none;
 				position: absolute;
@@ -475,7 +549,6 @@ Description : Shot List Page.
 				height: 2em;
 				border-radius: 5px;
 				float: right;
-				/*margin-left: 20%;*/
 				margin-top: 1%;
 				background: darkslategray;/*rgb(75, 80, 83);*/
 				color: whitesmoke;
@@ -514,7 +587,7 @@ Description : Shot List Page.
 			}
 
 			footer{
-				height: 2em;
+				height: 2em;r
 				z-index: 1;
 				color: rgb(255, 252, 190);
 				font-family: Arial, Helvetica;
@@ -619,6 +692,8 @@ Description : Shot List Page.
 							</div>
 						</div>
 						<div id="fade" onClick="attn_time_close();">
+						<div class="cluster" style="height:66em;" id="loader"><img src="../media/Images/loading.gif" height="45" width="45"/></div>
+						<div id="loading_fade">
 						</div>
 					</div>
 				</div>

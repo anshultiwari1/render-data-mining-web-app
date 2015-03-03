@@ -44,6 +44,7 @@ Description : Shot List Page.
 
 			function draw_table(){
 				//var server = $('#server').val();
+				// loader -- Please wait
 				loading_time(1);
 				if ($('#date1').val()=="") {	var start_date = "";}
 				else {	var date1 = new Date($('#date1').val()),
@@ -63,7 +64,6 @@ Description : Shot List Page.
 						alert("Error");
 					},
 					success: function(json){
-                                                // loader finish
 						//console.log(json[0]);
 						var result = json[0]['result'];
 						var rowCount = 1;
@@ -82,7 +82,7 @@ Description : Shot List Page.
 							rowCount+=1;
 							$("#shotTable > tbody:last").append(row);
 						});
-						// loader -- Please wait
+                                                // loader finish
 						loading_time(0);
 					}
 				});
@@ -90,6 +90,7 @@ Description : Shot List Page.
 
 
 			function details(jid){
+				// loader -- Please wait
 				loading_time(1);
 				rpc.batchRequest([
 					{method: 'getFrameList', params: [jid]}
@@ -121,10 +122,11 @@ Description : Shot List Page.
 							rowCount+=1;
 							$("#frameTable > tbody:last").append(row);
 						});
+                                                // loader finish
 						loading_time(0);
+						attn_time_open();
 					}
 				});
-				attn_time_open();
 			}
 
 
@@ -162,6 +164,7 @@ Description : Shot List Page.
 
 
 			function loading_time(visible){
+				//console.log(visible);
 				if (visible) {
 					$("#loading_fade").show();
 					$("#loader").show();
@@ -282,7 +285,7 @@ Description : Shot List Page.
 				//console.log(csv);
 				var shot = $('#name').text(),
 				jid = $('#job_id').text(),
-				file = "frameDetail_"+shot+"_"+jid;r
+				file = "frameDetail_"+shot+"_"+jid;
 				write_csv(csv, file);
 			}
 
@@ -375,7 +378,7 @@ Description : Shot List Page.
 				float: left;
 				text-align: left;
 				width: auto;
-				padding: 2px;r
+				padding: 2px;
 				height:80px;
 				margin:5px;
 			}
@@ -502,19 +505,6 @@ Description : Shot List Page.
 				width:30%;
 				margin-top: 2em;
 			}
-			#loading_fade{
-				display: none;
-				position: fixed;
-				top: 0%;
-				left: 0%;
-				width: 100%;
-				height: 100%;
-				background-color: #000;
-				z-index:1001;
-				-moz-opacity: 0.7;
-				opacity:.70;
-				filter: alpha(opacity=70);
-			}
 			#attn_time{
 				display: none;
 				position: absolute;
@@ -530,7 +520,7 @@ Description : Shot List Page.
 				border-radius: 5px;
 				margin-top: 2em;
 			}
-			#fade{
+			#fade, #loading_fade{
 				display: none;
 				position: fixed;
 				top: 0%;
@@ -587,7 +577,7 @@ Description : Shot List Page.
 			}
 
 			footer{
-				height: 2em;r
+				height: 2em;
 				z-index: 1;
 				color: rgb(255, 252, 190);
 				font-family: Arial, Helvetica;
@@ -623,6 +613,7 @@ Description : Shot List Page.
 					<div style="display:block;">
 						<div class="cluster">
 							<label style="margin-left:5px;">Select server: </label><select class="info_left" style="margin-left:8em;" id="server" onchange="setClient()"><option selected>lic</option><option>fox</option></select>
+							<a style="float:right" href="http://172.16.15.246:55555/" target="blank" >check the queue</a>
 							<table class="filter_table">
 								<tr>
 								      <td><label>Start Date: </label></td>
@@ -691,10 +682,9 @@ Description : Shot List Page.
 								  <button class="SubR" type="submit" id="frameReport" onclick="export_frames_to_csv.apply()">Export to CSV</button>
 							</div>
 						</div>
-						<div id="fade" onClick="attn_time_close();">
+						<div id="fade" onClick="attn_time_close();"></div>
 						<div class="cluster" style="height:66em;" id="loader"><img src="../media/Images/loading.gif" height="45" width="45"/></div>
-						<div id="loading_fade">
-						</div>
+						<div id="loading_fade"></div>
 					</div>
 				</div>
 			</section>

@@ -78,7 +78,7 @@ def getShotList(info):
 	      jobslist = tq.jobs("title like seq{0}_scn{1}_ and done and stoptime >-1d".format(info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
 	      print "seq and scn"
 	    else:
-	      jobslist = tq.jobs("title like seq{1}_scn{2}_sh{3} and done and stoptime >-1d".format(info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
+	      jobslist = tq.jobs("title like seq{0}_scn{1}_sh{2} and done and stoptime >-1d".format(info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
 	      print "seq, scn and shot"
       else:
 	if info["seq"] == "":
@@ -136,61 +136,60 @@ def getShotList(info):
 	else:
 	  if info["scn"] == "":
 	    jobslist = tq.jobs("title like seq{1}_ and done and stoptime <{0}".format(info["end_date"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	    print "only seq"
+	    print "end_date, seq"
 	  else:
 	    if info["shot"] == "":
 	      jobslist = tq.jobs("title like seq{1}_scn{2}_ and done and stoptime <{0}".format(info["end_date"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "seq and scn"
+	      print "end_date, seq and scn"
 	    else:
 	      jobslist = tq.jobs("title like seq{1}_scn{2}_sh{3} and done and stoptime <{0}".format(info["end_date"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "seq, scn and shot"
+	      print "end_date, seq, scn and shot"
       else:
 	if info["seq"] == "":
 	  jobslist = tq.jobs("owner={1} and done and stoptime <{0}".format(info["end_date"], info["user"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	  print "only user"
+	  print "end_date, user"
 	else:
 	  if info["scn"] == "":
 	    jobslist = tq.jobs("owner={1} and title like seq{2}_ and done and stoptime <{0}".format(info["end_date"], info["user"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	    print "user and seq"
+	    print "end_date, user and seq"
 	  else:
 	    if info["shot"] == "":
 	      jobslist = tq.jobs("owner={1} and title like seq{2}_scn{3}_ and done and stoptime <{0}".format(info["end_date"], info["user"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "user, seq and scn"
+	      print "end_date, user, seq and scn"
 	    else:
 	      jobslist = tq.jobs("owner={1} and title like seq{2}_scn{3}_sh{4} and done and stoptime <{0}".format(info["end_date"], info["user"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "user, seq, scn and shot"
+	      print "end_date, user, seq, scn and shot"
     else:
       if info["user"] == "":
 	if info["seq"] == "":
 	  jobslist = tq.jobs("done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	  print "only start_date"
+	  print "start_date, end_date"
 	else:
 	  if info["scn"] == "":
 	    jobslist = tq.jobs("title like seq{2}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	    print "start_date and seq"
+	    print "start_date, end_date and seq"
 	  else:
 	    if info["shot"] == "":
 	      jobslist = tq.jobs("title like seq{2}_scn{3}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "start_date, seq and scn"
+	      print "start_date, end_date, seq and scn"
 	    else:
 	      jobslist = tq.jobs("title like seq{2}_scn{3}_sh{4} and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "start_date, seq, scn and shot"
+	      print "start_date, end_date, seq, scn and shot"
       else:
 	if info["seq"] == "":
 	  jobslist = tq.jobs("owner={2} and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	  print "start_date and user"
+	  print "start_date, end_date and user"
 	else:
 	  if info["scn"] == "":
 	    jobslist = tq.jobs("owner={2} and title like seq{3}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"], info["seq"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	    print "start_date, user and seq"
+	    print "start_date, end_date, user and seq"
 	  else:
 	    if info["shot"] == "":
 	      jobslist = tq.jobs("owner={2} and title like seq{3}_scn{4}_ and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"], info["seq"], info["scn"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "start_date, user, seq and scn"
+	      print "start_date, end_date, user, seq and scn"
 	    else:
 	      jobslist = tq.jobs("owner={2} and title like seq{3}_scn{4}_sh{5} and done and stoptime >{0} and stoptime <{1}".format(info["start_date"], info["end_date"], info["user"], info["seq"], info["scn"], info["shot"]), columns=["title","owner","jid","numdone","stoptime"], sortby=["title"])
-	      print "start_date, user, seq, scn and shot"
-
+	      print "start_date, end_date, user, seq, scn and shot"
 
   return jobslist
 
@@ -223,7 +222,9 @@ def getFrameList(jid):
   invocslist = tq.invocations("jid={0} and current=True".format(jid), columns=["tid","elapsedreal"], sortby=["tid"])
   if len(invocslist) > 1:	tlen = job["numdone"]-1
   else:		tlen = job["numdone"]
-  if len(taskslist) > 1 and "sim" not in title: 	taskslist = taskslist[1:]
+  #if len(taskslist) > 1 and "Sim" not in title: 	taskslist = taskslist[1:]
+  if len(invocslist) > len(taskslist):  	invocslist = invocslist[1:]
+  elif len(invocslist) < len(taskslist): 	taskslist = taskslist[1:]
 
 
   time_spent = timedelta(seconds=0)

@@ -1,0 +1,999 @@
+    1  $tq_bin help attributes Job
+    2  $tq_bin jobs "done and stoptime > -7d " -c title,owner,jid,numdone,stoptime,esttotalsecs | sort | tee /tmp/task_stat_weekly_report.log
+    3  for jid in `$tq_bin jobs "done and stoptime > -1d " -c jid,stoptime --nh | sort | awk '{print $1}'`; do echo  "Job `$tq_bin jobs jid=$jid -c title, owner, jid  --nh`"; $tq_bin invocations "jid=$jid" -c jid, tid, wtime, current | grep -i true; echo "============================"; done | tee /tmp/task_stat_`date +%F`.xls
+    4  for jid in `$tq_bin jobs "done and stoptime > -1d " -c jid,stoptime --nh | sort | awk '{print $1}'`; do echo  "Job `$tq_bin jobs jid=$jid -c title,jid  --nh`"; $tq_bin invocations "jid=$jid" -c jid,tid,wtime,current | grep -i true; echo "============================"; done | tee -a /tmp/task_stat_`date +%F`.log
+    5  exit
+    6  ssh root@16.16.16.2 =p 2212
+    7  ssh root@16.16.16.2 -p 2212
+    8  ssh root@172.16.15.201
+    9  history
+   10  ssh root@172.16.15.201
+   11  maya
+   12  rv
+   13  cd /home/anshul/
+   14  clear
+   15  maya
+   16  ll /etc/bashrc
+   17  less /etc/bashrc
+   18  ll /etc/profile.d/user_bashrc.sh
+   19  less /etc/profile.d/user_bashrc.sh
+   20  less /etc/profile
+   21  maya
+   22  Nuke7.0 
+   23  maya
+   24  su
+   25  maya
+   26  ll /home/anshul/ShotApp/shotApp/
+   27  ll /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   28  ll /home/anshul/ShotApp/shotApp/rpc/
+   29  ll /home/anshul/ShotApp/shotApp/rpc/getAlljobs.sh
+   30  mv /home/anshul/ShotApp/shotApp/rpc/getAlljobs.sh /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   31  chmod u+x /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   32  /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   33  vi /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   34  /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   35  vi /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   36  /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   37  vi /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   38  /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   39  ll /home/anshul/dev/python/Tractor-2.0/bin/tq
+   40  cat /home/anshul/dev/python/Tractor-2.0/bin/tq
+   41  cat /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   42  vi /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   43  /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   44  vi /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   45  /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   46  /home/anshul/dev/python/Tractor-2.0/bin/tq jobs "done and stoptime > -30d " -c title,owner,jid,stoptime --nh
+   47  /home/anshul/dev/python/Tractor-2.0/bin/tq jobs "done and stoptime > -30d" -c title,owner,jid,stoptime --nh
+   48  /home/anshul/ShotApp/shotApp/rpc/getAllJobs.sh
+   49  /usr/bin/ruby
+   50  /usr/loacl/ruby
+   51  /usr/local/ruby
+   52  exit
+   53  su
+   54  ssh root@lic -p 2212
+   55  exit
+   56  cd /nas/projects/bilal_the_movie/
+   57  ls
+   58  exit
+   59  vi .bashrc 
+   60  clear
+   61  su
+   62  exit
+   63  ssh root@172.16.15.247
+   64  ssh root@172.16.15.248
+   65  ssh root@172.16.15.249
+   66  ssh root@172.16.15.246
+   67  ssh root@172.16.15.247
+   68  ssh root@172.16.15.229
+   69  maya
+   70  maya
+   71  vi .bashrc 
+   72  maya
+   73  maya
+   74  vi /etc/hosts
+   75  su
+   76  maya
+   77  du -shc ~/
+   78  ssh root@113.107.235.11 -p 2212 "w"
+   79  ssh root@113.107.235.11 -p 7001 "w"
+   80  ping 113.107.235.11
+   81  ssh root@113.107.235.11 -p 7001 -vv "w"
+   82  ssh root@113.107.235.11 -p 7001 "w"
+   83  python
+   84  ssh root@113.107.235.11 -p 7001 "w"
+   85  pip install paramiko
+   86  yum pip
+   87  ssh root@113.107.235.11 -p 7001 "w"
+   88  python
+   89  sudo yum python-paramiko
+   90  sudo yum install python-paramiko
+   91  sudo yum install python-flask
+   92  sudo yum install python-celery
+   93  python
+   94  sudo yum install python-fabric
+   95  sudo yum install python-django
+   96  sudo yum install python-fabric.api
+   97  sudo yum install python-Fabric
+   98  sudo easy-install2.6 fabric
+   99  sudo easy_install2.6 fabric
+  100  sudo easy_install fabric
+  101  for i in 1 2 3 4 5;do echo $i; done
+  102  for i in ;do echo "sshpass -p "barajoun@2014" ssh root@10.50.18.$i killall -s9 maya &killall -s9 maya.bin &killall -s9 maya &killall -s9 maya.bin &/etc/init.d/tractor-blade restart"; don
+  103  for i in 1..5;do echo $i; done
+  104  for i in 1-5;do echo $i; done
+  105  for i in 1 2 3 4 5 6 7 8 9 10; do echo "sshpass -p "barajoun@2014" ssh root@10.50.18.$i killall -s9 maya &killall -s9 maya.bin &killall -s9 maya &killall -s9 maya.bin &/etc/init.d/tractor-blade restart"; don
+  106  for i in 1 2 3 4 5 6 7 8 9 10; do echo "sshpass -p "barajoun@2014" ssh root@10.50.18.$i killall -s9 maya &killall -s9 maya.bin &killall -s9 maya &killall -s9 maya.bin &/etc/init.d/tractor-blade restart"; done
+  107  ssh lic
+  108  ssh root@lic
+  109  ssh root@16.16.16.2 -p 2201
+  110  ssh root@16.16.16.2 -p 2213
+  111  ssh root@16.16.16.2 -p 2
+  112  ssh root@16.16.16.2 -p 22
+  113  ssh root@16.16.16.2 -p 2212
+  114  killall -s9 vncviewer
+  115  ssh root@lic -p 2212
+  116  lscpu
+  117  lscpu -short
+  118  sudo lscpu -short
+  119  su lscpu -short
+  120  su
+  121  hwinfo
+  122  hwinfo --short
+  123  cat /proc/meminfo
+  124  dmidecode | less
+  125  dmidecode
+  126  vi ~/tasks_stat_fox.sh
+  127  chmod u+x ~/tasks_stat_fox.sh
+  128  ll ~/tasks_stat_fox.sh
+  129  /home/anshul/tasks_stat_fox.sh
+  130  mkdir ~/dev/python -pv
+  131  cd ~/dev/python
+  132  mkdir Tractor-2.0
+  133  scp 16.16.16.2:/opt/pixar/Tractor-2.0/ Tractor-2.0/
+  134  scp 16.16.16.2:/opt/pixar/Tractor-2.0/ Tractor-2.0/ -p 2212
+  135  rsync -anv --progress -e "ssh -p 2212"  16.16.16.2:/opt/pixar/Tractor-2.0/ Tractor-2.0/ 
+  136  rsync -anv --progress -e "ssh -p 2212"  root@16.16.16.2:/opt/pixar/Tractor-2.0/ Tractor-2.0/ 
+  137  rsync -azv --progress -e "ssh -p 2212"  root@16.16.16.2:/opt/pixar/Tractor-2.0/ Tractor-2.0/ 
+  138  ll Tractor-2.0/
+  139  cp /home/anshul/tasks_stat_fox.sh Tractor-2.0/bin/
+  140  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  141  pwd
+  142  ll /home/anshul/dev/python/Tractor-2.0/bin/tq
+  143  fg
+  144  set bin='/home/anshul/dev/python/Tractor-2.0/bin/tq'
+  145  echo $bin
+  146  export bin='/home/anshul/dev/python/Tractor-2.0/bin/tq'
+  147  echo $bin
+  148  $bin
+  149  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  150  ll Tractor-2.0/bin/tasks_stat_fox.sh
+  151  chmod u+x Tractor-2.0/bin/tasks_stat_fox.sh
+  152  Tractor-2.0/bin/tasks_stat_fox.sh
+  153  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  154  Tractor-2.0/bin/tasks_stat_fox.sh
+  155  ll /tmp/task_stat_2015-01-17.log 
+  156  kwrite /tmp/task_stat_2015-01-17.log
+  157  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  158  Tractor-2.0/bin/tasks_stat_fox.sh
+  159  ll /tmp/task_stat*
+  160  kwrite /tmp/task_stat_2015-01-17.log
+  161  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  162  rm -rfv /tmp/task_stat_2015-01-17.log
+  163  Tractor-2.0/bin/tasks_stat_fox.sh
+  164  env | grep -i tract
+  165  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  166  crontab -l
+  167  sudo crontab -e
+  168  kwrite /tmp/task_stat_2015-01-17.log
+  169  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  170  kwrite /tmp/task_stat_2015-01-17.log
+  171  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  172  rm -rfv /tmp/task_stat_2015-01-17.log
+  173  Tractor-2.0/bin/tasks_stat_fox.sh
+  174  kwrite /tmp/task_stat_2015-01-17.log
+  175  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  176  rm -rfv /tmp/task_stat_2015-01-17.log
+  177  Tractor-2.0/bin/tasks_stat_fox.sh
+  178  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  179  Tractor-2.0/bin/tasks_stat_fox.sh
+  180  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  181  Tractor-2.0/bin/tasks_stat_fox.sh
+  182  vi Tractor-2.0/bin/tasks_stat_fox.sh
+  183  Tractor-2.0/bin/tasks_stat_fox.sh
+  184  cd ../
+  185  /nas/projects/Tactic/sandbox/bilal/ashwin/asset//seq35_scn63_sh003_lig_lightingBg_v001.alf
+  186  vncviewer 
+  187  vncviewer
+  188  clear
+  189  vncviewer
+  190  clear
+  191  vncviewer
+  192  ssh root@lic -p 2212
+  193  maya
+  194  ssh root@lic -p 2212
+  195  ssh fox
+  196  python
+  197  jobs
+  198  kill -s9 python
+  199  kill -s9 %2
+  200  kill -s9 2
+  201  jobs -p
+  202  kill -s9 11839
+  203  killall -s9 11839
+  204  killall -s9 11877
+  205  python
+  206  ps -f
+  207  kill -9 11839
+  208  kill -9 11877
+  209  ps -f
+  210  python
+  211  yum search python rmanpy
+  212  yum search all python rmanpy
+  213  yum search all python-rmanpy
+  214  yum search all python-pyside
+  215  yum install python-pyside
+  216  sudo yum install python-pyside
+  217  yum search all python tractor
+  218  yum search all python tractor.api
+  219  python
+  220  ssh root@fox -p 7001
+  221  maya
+  222  ssh root@fox -p 7001
+  223  ping fox
+  224  ssh root@16.16.16.2 -p 2212
+  225  ssh root@113.107.235.11 -p 7001
+  226  ip -addr
+  227  ip -help
+  228  ip -d addr
+  229  ip addr
+  230  ip -d addr
+  231  ip addr show
+  232  %hostname -I%
+  233  %hostname -I
+  234  % hostname -I
+  235  ifconfig eth0
+  236  ll ~/Documents/ -t
+  237  sudo apt-get install python-pip
+  238  apt-get install python-pip
+  239  su
+  240  clear
+  241  su
+  242  /nas/projects/development/productionTools/py_queue/bin/submit_to_queue.py SYNC_RENDER /nas/projects/Tactic/bilal/render/.depsTemp/seq08_scn22_sh014_lig_lightingHorseFur_v003.ma_filtered.lst hassan /nas/projects/bilal_the_movie/umayyaroom_test//seq08_scn22_sh014_lig_lightingHorseFur_v003.alf 19260ecc-a4c5-4cc7-89b0-87cd44b534df
+  243  ssh anshul@172.16.15.246
+  244  /nas/projects/development/productionTools/py_queue/q_list all
+  245  /nas/projects/development/productionTools/py_queue/bin/q_list all
+  246  w
+  247  ssh anshul@172.16.15.246
+  248  su
+  249  ssh root@lic -p 2212
+  250  vncviewer
+  251  ssh root@lic -p 2212
+  252  vncviewer
+  253  ssh root@lic -p 2212
+  254  vncviewer
+  255  ssh root@lic -p 2212
+  256  cd q_mon/
+  257  ll q_mon
+  258  sudo chown anshul:anshul q_mon
+  259  ll q_mon
+  260  sudo chown anshul:anshul q_mon/*
+  261  ll q_mon
+  262  cd q_mon/
+  263  cd flask/
+  264  ll
+  265  ./q_mon.py
+  266  sudo chown anshul:anshul -R ~/q_mon/*
+  267  ./q_mon.py
+  268  sudo yum search ipython
+  269  sudo yum install ipython
+  270  ipython
+  271  sudo pip
+  272  pip
+  273  sudo pip install argparse
+  274  ipython
+  275  python
+  276  ipython
+  277  cd ShotApp/
+  278  django-admin.py startproject shotApp
+  279  django-admin startproject shotApp
+  280  python manage.py runserver
+  281  cd shotApp/
+  282  python manage.py runserver
+  283  grep -i FILE_PATH -r *
+  284  pgrep -lf runserver
+  285  pstree -p 19013
+  286  strace -f -c -p 19014
+  287  strace -f -eopen -p 19014
+  288  strace -f -p 19013
+  289  strace -f -p 19014
+  290  strace -f -o /tmp/info.txt -p 19014
+  291  ll /tmp/info.txt
+  292  ll /tmp/info.txt -th
+  293  less /tmp/info.txt
+  294  strace -f -c -p 19014
+  295  strace -f -c -p 19015
+  296  strace -f -eopen -p 19015
+  297  strace -f -efstat -p 19014
+  298  strace -f -estat -p 19014
+  299  strace -f -c -p 19015
+  300  less /tmp/info.txt
+  301  vi .bashrc 
+  302  history
+  303  ruby --version
+  304  ruby version
+  305  ruby
+  306  cd ../
+  307  sudo yum search mtr
+  308  sudo yum install mtr.x86
+  309  sudo yum install mtr.x86_64
+  310  sudo yum install mtr
+  311  mtr 113.107.235.11
+  312  sudo yum install mtr
+  313  su mtr 113.107.235.11
+  314  sudo mtr 113.107.235.11
+  315  sudo mtr 112.73.6.234
+  316  ping 112.73.6.234
+  317  sudo mtr 112.73.6.234
+  318  ping c 20 112.73.6.234
+  319  ping -c 20 112.73.6.234
+  320  ping -c 20 113.107.235.11
+  321  sudo mtr 112.73.6.234
+  322  traceroute 112.73.6.234
+  323  sudo mtr 112.73.6.234
+  324  traceroute 54.169.63.110
+  325  nmap -p 33001 112.73.6.234
+  326  sudo nmap -p 33001 112.73.6.234
+  327  yum install nmap
+  328  sudo yum install nmap
+  329  nmap -p 33001 112.73.6.234
+  330  telnet 112.73.6.234
+  331  sudo yum install telnet
+  332  telnet 112.73.6.234
+  333  ifconfig
+  334  df -h
+  335  df -h /
+  336  ./update_transfer_q_entity.rb
+  337  ./update_transfer_q_entity.rb 961 DOWN done
+  338  ./update_transfer_q_entity.rb DOWN-961 DOWN done
+  339  ./update_transfer_q_entity.rb seq33_scn60_sh009_lig_lightingEnvFog_v008__d8dbec3a-6df2-4919-90ed-bf1b7dcded3c DOWN done
+  340  which ruby
+  341  ruby -rdebug ./update_transfer_q_entity.rb seq33_scn60_sh009_lig_lightingEnvFog_v008__d8dbec3a-6df2-4919-90ed-bf1b7dcded3c DOWN done
+  342  ./update_transfer_q_entity.rb seq33_scn60_sh009_lig_lightingEnvFog_v008__d8dbec3a-6df2-4919-90ed-bf1b7dcded3c down done
+  343  ruby -rdebug ./update_transfer_q_entity.rb seq33_scn60_sh009_lig_lightingEnvFog_v008__d8dbec3a-6df2-4919-90ed-bf1b7dcded3c down done
+  344  ruby -rdebug ./update_transfer_q_entity.rb seq33_scn60_sh009_lig_lightingEnvFog_v008__d8dbec3a-6df2-4919-90ed-bf1b7dcded3c download done
+  345  echo "<script_name> seq33_scn60_sh009_lig_lightingEnvFog_v008__d8dbec3a-6df2-4919-90ed-bf1b7dcded3c download done"
+  346  vi ./update_transfer_q_entity.rb
+  347  ./update_transfer_q_entity.rb
+  348  ./update_transfer_q_db.rb 
+  349  ruby -rdebug ./update_transfer_q_entity.rb seq33_scn60_sh009_lig_lightingEnvFog_v008__d8dbec3a-6df2-4919-90ed-bf1b7dcded3c download done
+  350  ruby ./update_transfer_q_entity.rb seq23_scn39_sh001_lig_lightingBg_v002__1e913b1b-fc77-4aef-91a0-1dd9a1eb7138 download done
+  351  ruby ./update_transfer_q_entity.rb seq02_scn10_sh011_lig_lighting_bilalmatte_v004__f4ca96e6-50d0-4872-ab7f-df1bbf88e505 download done
+  352  ruby ./update_transfer_q_entity.rb seq33_scn60_sh009_lig_lighting_v016__bfb8f5ce-1e78-4eb7-b043-dfed669c1be5 download done
+  353  ruby ./update_transfer_q_entity.rb seq35_scn63_sh001_lig_lighting_v003__6e44fb60-4eab-4e18-bafc-1598e20659a7 download done
+  354  ruby ./update_transfer_q_entity.rb seq35_scn63_sh003_lig_lightingChar_v009__120d5cf8-f1df-4f9f-9bb8-916bc8640e74 download done
+  355  ruby ./update_transfer_q_entity.rb seq11_scn25_sh011_lig_lightingBg_v001__e775fe83-edbf-4071-aa99-753f561b25b3 download done
+  356  ruby ./update_transfer_q_entity.rb seq04_scn12_sh001_lig_lightingChar_v004__68b03317-dc9a-4b8f-b90a-35bd1ee80ab9 download done
+  357  ruby ./update_transfer_q_entity.rb seq35_scn63_sh003_lig_lightingBg_v002__15284397-6d17-4e10-88c2-7077f77f8619 download done
+  358  ruby ./update_transfer_q_entity.rb seq04_scn12_sh024_lig_lighting_v013__8aeebcd7-9a49-473b-a332-d55bacfeb3c5 upload done
+  359  ruby ./update_transfer_q_entity.rb seq02_scn10_sh003_lig_lighting_ass_v011__06eb1db6-cad9-4e93-82f6-946fdd5359a0 upload done
+  360  ruby ./update_transfer_q_entity.rb seq33_scn60_sh010A_lig_lightingDust_v014__65d4a7dd-6804-483a-ac3b-088d050e1209 download done
+  361  ruby ./update_transfer_q_entity.rb seq35_scn63_sh015_lig_lightingBG_v003__ffebcb61-3cc6-4d70-8dc8-ce6ecc7acbbb download done
+  362  ruby ./update_transfer_q_entity.rb seq04_scn12_sh074_lig_lightingCh_v002__3a792db7-aea5-4e0b-aecd-8d690610fe5a download done
+  363  ruby ./update_transfer_q_entity.rb seq35_scn63_sh015_lig_lightingChar_v003__05701c9a-aa63-4f63-94d2-b86612bb80e4 download done
+  364  ruby ./update_transfer_q_entity.rb seq35_scn63_sh005_lig_lighting_v003__5cd22257-0ed0-4bf4-971b-a1ee6e41a082 download done
+  365  ruby ./update_transfer_q_entity.rb seq11_scn25_sh001_lig_lighting_v009__72e92fbb-a5f8-4dab-a7af-48512be5d37d download done
+  366  ruby ./update_transfer_q_entity.rb seq35_scn63_sh015_lig_lightingChar_v003__05701c9a-aa63-4f63-94d2-b86612bb80e4 download done
+  367  ruby ./update_transfer_q_entity.rb seq22_scn38_sh070_lig_lightingBg_v006__8133f2a1-ddf0-40e8-b19b-6321ecc48f0d download done
+  368  ruby ./update_transfer_q_entity.rb seq11_scn25_sh011_lig_lightingBg_v002__c75f4349-201c-4b3c-9c15-9e6b994e2a3e download done
+  369  ruby ./update_transfer_q_entity.rb seq35_scn63_sh012_lig_lightingSword_v001__f3646070-e0ca-414a-b6a1-59e52a0e370e download done
+  370  ruby ./update_transfer_q_entity.rb seq35_scn63_sh015_lig_lightingChar_v004__ed0bf4a0-b747-4089-a4c5-8d7f25e7b424 download done
+  371  ruby ./update_transfer_q_entity.rb seq04_scn12_sh007_lig_lighting_CH_v001__b24548f4-4ed3-46f3-b3c6-c63f27db7ed6 download done
+  372  ruby ./update_transfer_q_entity.rb seq35_scn63_sh009_lig_lighting_v006__f0714e0b-5ffd-4cc2-808f-9ead16b3609e download done
+  373  ruby ./update_transfer_q_entity.rb seq04_scn12_sh005_lig_lighting_v014__b8ae1aaa-2226-45df-9667-2d44690fe472 download done
+  374  ruby ./update_transfer_q_entity.rb seq35_scn63_sh011_lig_lightingChar_v005__6ada1ed5-770a-4e32-9b29-bdd2d96b1734 download done
+  375  ruby ./update_transfer_q_entity.rb seq35_scn63_sh010_lig_lightingBilal_v003__f1d54fe4-09ae-4193-aecc-2ae7567818f3 download done
+  376  ruby ./update_transfer_q_entity.rb seq33_scn60_sh010A_lig_lighting_v017__ad4b2784-cf3f-4578-a0c2-1dc7658d5d35 download done
+  377  ruby ./update_transfer_q_entity.rb seq35_scn63_sh009_lig_lighting_v008__0330d343-56bb-4bf2-8a86-1282f4f007d0 download done
+  378  ruby ./update_transfer_q_entity.rb seq12_scn26_sh012_lig_lightingMatte_v007__eea18294-4b8b-4dbd-804e-b4fb81103b45 download done
+  379  ruby ./update_transfer_q_entity.rb seq03A_scn11_sh001_lig_lightingConst_v011__332dba90-2520-4917-b95c-5b974f2d3744 download done
+  380  ruby ./update_transfer_q_entity.rb seq03A_scn11_sh001_lig_lightingClothMatte_v011__0704ca42-33e0-408c-9247-1f5fcef88297 download done
+  381  ruby ./update_transfer_q_entity.rb seq03A_scn11_sh001_lig_lightingEnvKeyArch_v011__f893c4ca-5de5-4bb3-bf8b-3b9a9b3a00dc download done
+  382  mossh lic
+  383  ssh lic
+  384  ssh lic -p 2212
+  385  ssh root@lic -p 2212
+  386  ruby ./update_transfer_q_entity.rb seq03A_scn11_sh001_lig_lightingEnvFillArch_v011__9bf5f835-0e8c-4640-a8b6-69db247b53e6 download done
+  387  tree -d /nas/projects/Tactic/bilal/render/ > dir_list_tmp.txt
+  388  tree -d /nas/projects/Tactic/bilal/render/ > /tmp/dir_list_tmp.txt
+  389  tree -dH /nas/projects/Tactic/bilal/render/ > /tmp/dir_list_tmp.txt
+  390  tree -dh /nas/projects/Tactic/bilal/render/ > /tmp/dir_list_tmp.txt
+  391  ll
+  392  cd Documents/
+  393  tree -dh
+  394  cd ./
+  395  cd ../
+  396  tree -dh
+  397  $tq_bin tasks "jid=877" -c wtime --nh
+  398  man awk
+  399  $tq_bin tasks "jid=877" -c wtime --nh } awk '{print $1}'
+  400  $tq_bin tasks "jid=877" -c wtime --nh | awk '{print $1}'
+  401  $tq_bin tasks "jid=877" -c wtime --nh | awk '{sum+=$1}'
+  402  $tq_bin tasks "jid=877" -c wtime --nh | awk '{sum+=$1}' END '{print sum}'
+  403  $tq_bin tasks "jid=877" -c wtime --nh | awk '{sum+=$1} END {print sum}'
+  404  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{print $1}'
+  405  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$1} END {print sum}'
+  406  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$2} END {print sum}'
+  407  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$3} END {print sum}'
+  408  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum1+=$3} END {sum1+=$2} END {sum1+=$2} END {print sum1}'
+  409  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum1+=$3} END {sum2+=$2} END {sum3+=$1} END {print sum1}'
+  410  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum1+=$3} END {sum2+=$2} END {sum3+=$1} END {print sum1 sum2 sum3}'
+  411  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$1 * 3600} END {sum+=$2*60} END {sum+=$3} END {print sum}'
+  412  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$1 * 3600} END {sum+=$2*60} END {sum+=$3} END {sum/=3600} END {print sum}'
+  413  $tq_bin tasks "jid=877" -c wtime --nh | awk '{print $1}'
+  414  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$1 * 3600} END {sum+=$2*60} END {sum+=$3} END {print sum}'
+  415  $tq_bin tasks "jid=877" -c wtime --nh
+  416  man head
+  417  head -r
+  418  head --help
+  419  tail --help
+  420  $tq_bin tasks "jid=877" -c wtime --nh
+  421  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$1 * 3600} END {print sum}'
+  422  $tq_bin tasks "jid=877" -c wtime --nh | awk -F : '{sum+=$2 * 60} END {print sum}'
+  423  $tq_bin tasks "jid=877" -c wtime --nh } tail -N 1 
+  424  $tq_bin tasks "jid=877" -c wtime --nh | tail -n 1 
+  425  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+1 
+  426  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+ 1 
+  427  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 
+  428  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=$1 * 3600} END {sum+=$2*60} END {sum+=$3} END {print sum}'
+  429  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=$1 * 3600} END {sum+=$2*60} END {sum+=$3} END {}sum\=3600} END {print sum}'
+  430  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=$1 * 3600} END {sum+=$2*60} END {sum+=$3} END {sum\=3600} END {print sum}'
+  431  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=$1 * 3600} END {sum+=$2*60} END {sum+=$3} END {sum/=3600} END {print sum}'
+  432  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2
+  433  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum1+=$1 * 3600} END {sum2+=$2*60} END {sum3+=$3} END {print sum1 " " sum2 " " sum3}'
+  434  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum3+=$3} END {print sum1 " " sum2 " " sum3}'
+  435  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum3+=$2} END {print sum1 " " sum2 " " sum3}'
+  436  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print $1 $2 $3}'
+  437  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print $1 " " $2 " " $3}'
+  438  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print $1*3600 " " $2 " " $3}'
+  439  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print $1*3600 " " $2*60 " " $3}'
+  440  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum1+=$1 * 3600} END {sum2+=$2*60} END {sum3+=$3} END {print sum1+sum2+sum3}'
+  441  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum1+=$1 * 3600} END {sum2+=$2*60} END {sum3+=$3} END {print sum1 " " sum2 " " sum3}'
+  442  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum1+=$1 * 3600} END {print $2} END {print $3} END {print sum1 " " sum2 " " sum3}'
+  443  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum1+=$1 * 3600} END {print $2} END {print $3}'
+  444  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 
+  445  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print $1 " " print $2 " " print $3}'
+  446  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print $1 " " $2 " "  $3}'
+  447  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print $1*3600+$2*60+$3}'
+  448  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{print ($1*3600+$2*60+$3)/3600}'
+  449  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print sum}'
+  450  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600/10} END {print sum}'
+  451  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{count+=1} END {sum+=($1*3600+$2*60+$3)/3600/10} END {print sum " " count}'
+  452  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{count+=1} END {avg+=($1*3600+$2*60+$3)/3600/count} END {print "Average per frame (total frame(" count "): "avg}'
+  453  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{count+=1} END {avg+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "avg}'
+  454  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{count+=1} END {sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  455  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  456  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{count+=1} END {sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  457  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  458  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : 'BEGIN { count=0;} {count++} END {print count}'
+  459  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : 'BEGIN { count=0;} {count++} END {print count} '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  460  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : 'BEGIN { count=0;} {count++} END {print count} {sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  461  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : 'BEGIN { count=0;} {count++} END {print count} {sum+=($1*3600+$2*60+$3)/3600/count} END {print "Average per frame (total frame(" count ")): "sum}'
+  462  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : 'BEGIN { count=0;} {count++} END {sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum " " count}'
+  463  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : 'BEGIN { count=0;} {count++} END {sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  464  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum/NR}'
+  465  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  466  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum/NR}'
+  467  echo "$tq_bin tasks \"jid=877\" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print sum/NR}'"
+  468  echo "$tq_bin tasks \"jid=877\" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print sum/NR}'" | ssh abhishek@172.16.15.246 "cat >> /tmp/foo"
+  469  ssh abhishek@172.16.15.246 "echo "$tq_bin tasks \"jid=877\" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print sum/NR}'" >> /tmp/foo"
+  470  ssh abhishek@172.16.15.246 "echo \"$tq_bin tasks \"jid=877\" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print sum/NR}'\" >> /tmp/foo"
+  471  ssh abhishek@172.16.15.24
+  472  ssh abhishek@172.16.15.246
+  473  $tq_bin tasks "jid=875" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum/NR}'
+  474  $tq_bin tasks "jid=875" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  475  $tq_bin tasks "jid=875" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "NR}'
+  476  $tq_bin tasks "jid=920" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum/NR}'
+  477  $tq_bin tasks "jid=967" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum/NR}'
+  478  $tq_bin tasks "jid=967" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "NR}'
+  479  $tq_bin tasks "jid=967" -c wtime --nh | tail -n+2 | awk -F : '{sum+=($1*3600+$2*60+$3)/3600} END {print "Average per frame (total frame(" count ")): "sum}'
+  480  $tq_bin tasks "jid=877" -c wtime --nh | awk '{print $1}'
+  481  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk '{print $1}'
+  482  $tq_bin tasks "jid=877" -c wtime --nh | tail -n+2 | awk '{print $1}' | tee /tmp/task_tmp.log
+  483  python
+  484  pwd
+  485  ll
+  486  cd ShotApp/shotApp/
+  487  python
+  488  cd ./
+  489  cd ../
+  490  django-admin startproject test
+  491  django-admin startproject testing
+  492  cd testing/
+  493  python manage.py runserver
+  494  ll
+  495  grep -i FILE_PATH -r *
+  496  vi settings.py
+  497  python manage.py runserver
+  498  vi settings.py
+  499  python manage.py runserver
+  500  ll
+  501  ll -a
+  502  ll 
+  503  vi manage.py 
+  504  vi settings.py
+  505  python manage.py runserver
+  506  vi settings.py
+  507  ll
+  508  vi urls.py
+  509  vi 
+  510  vi urls.py
+  511  grep -i 8000 -r *
+  512  grep -i port -r *
+  513  vi settings.py
+  514  python manage.py --help
+  515  python manage.py help runserver
+  516  vi settings.py
+  517  python manage.py runserver 7000
+  518  python manage.py runserver '*:7000'
+  519  python manage.py runserver '172.16.15.221:7000'
+  520  cd ./
+  521  cd ../
+  522  cd ShotApp/shotApp
+  523  python manage.py runserver
+  524  env | grep -i tract
+  525  export TRACTOR_ENGINE=fox:1503
+  526  ping fox
+  527  fg
+  528  bg
+  529  pgrep -lf python
+  530  strings /proc/5888/environ | grep -i tract
+  531  fg
+  532  echo $TRACTOR_MONITO
+  533  echo $TRACTOR_MONITOR
+  534  export TRACTOR_ENGINE=fox:1503
+  535  echo $TRACTOR_MONITOR
+  536  echo $TRACTOR_ENGINE
+  537  python manage.py runserver
+  538  export TRACTOR_ENGINE=lic:1503
+  539  python manage.py runserver
+  540  ll
+  541  cp templates/shotApp.html templates/shotApp2.html
+  542  python manage.py runserver
+  543  ll
+  544  git init
+  545  ll -t -a
+  546  cd .git
+  547  ll -t
+  548  vi config
+  549  cd ..
+  550  git status
+  551  git branch -a
+  552  git branch -a -r
+  553  ll
+  554  touch .gitignore
+  555  vi .gitignore 
+  556  git status
+  557  vi .gitignore 
+  558  git status
+  559  git add .
+  560  git status
+  561  git commit -m "Working version. #ToDo. datefields aren't working with the app yet."
+  562  git status
+  563  git branch 
+  564  git push
+  565  python manage.py runserver
+  566  python manage.py runserver 172.16.10.54:8000
+  567  python manage.py runserver 172.16.15.221:8000
+  568  cd ../
+  569  ssh fox
+  570  history
+  571  ssh lic
+  572  ssh 16.16.16.2
+  573  ssh 16.16.16.2 -p 1203
+  574  ssh 16.16.16.2 -p 2212
+  575  ssh render@16.16.16.2 -p 2212
+  576  ssh-keygen -t rsa -b 1024
+  577  cat /home/anshul/.ssh/id_rsa.pub
+  578  ssh-keygen -t rsa -b 1024 -c "anshultiwari1@gmail.com"
+  579  ssh-keygen -t rsa -b 1024 -C "anshultiwari1@gmail.com"
+  580  cat /home/anshul/.ssh/id_rsa.pub
+  581  eval "$(ssh-agent -s)"
+  582  ssh-add ~/.ssh/id_rsa
+  583  ssh -T git@github.com
+  584  cd ~/ShotApp/shotApp1.0/
+  585  git status
+  586  git log --oneline
+  587  git add .
+  588  git commit -m "Working version. #ToDo Add a progress bar/loading bar."
+  589  git log --oneline
+  590  git branch -b
+  591  git branch -a
+  592  git branch -r
+  593  git remote add origin https://github.com/anshultiwari1/render-data-mining-web-app.git
+  594  git branch -r
+  595  git branch -a
+  596  git push -u origin master
+  597  vi .git/config 
+  598  git push -u origin master
+  599  git --version
+  600  vi .git/config 
+  601  git push -u origin master
+  602  git branch -a
+  603  git branch -r
+  604  vi .git/config 
+  605  git status
+  606  git rm media/js/jquery-1.9.1.min.js
+  607  git rm media/js/jquery-ui-1.8.16.custom.min.js
+  608  git status
+  609  git add .
+  610  git status
+  611  git commit -m "deleted couple js libs"
+  612  git status
+  613  git log 
+  614  git log --oneline
+  615  git push
+  616  git log --oneline
+  617  vi templates/shotApp.html
+  618  git status
+  619  vi templates/shotApp.html
+  620  rm templates/shotApp.html
+  621  git reset --hard
+  622  git log --oneline
+  623  vi templates/shotApp.html
+  624  git status
+  625  git add .
+  626  git push
+  627  git commit -m "complete v1.0"
+  628  git add .
+  629  git push
+  630  git commit -m "bug fix and add queue link"
+  631  git add .
+  632  git commit -m "bug fix and add queue link"
+  633  git push
+  634  git status
+  635  git commit -m "bug fix and add queue link"
+  636  git add .
+  637  git push
+  638  git commit -m "bug fix and add queue link"
+  639  git add .
+  640  git push
+  641  cd
+  642  git clone git@github.com:makeittotop/currency-rate-chrome-ext.git
+  643  ssh root@lic -p 7212
+  644  ssh root@lic -p 7221
+  645  ssh root@lic  
+  646  ssh root@lic -p 7021
+  647  ssh root@lic -p 2212
+  648  vncviewer
+  649  su
+  650  ssh root@lic -p 2212
+  651  vncviewer
+  652  ssh root@fox -p 7012
+  653  ssh root@fox
+  654  ssh root@fox -p 7001
+  655  ssh root@lic -p 2212
+  656  python manage.py runserver 172.16.15.221:8000
+  657  cd ShotApp/
+  658  cd shotApp
+  659  python manage.py runserver 172.16.15.221:8000
+  660  cd..
+  661  cd ..
+  662  tmux attach-seesion -t queue
+  663  sudo tmux attach-seesion -t queue
+  664  ssh 172.10.15.246
+  665  ssh 172.16.15.246
+  666  ssh root@lic -p 2212
+  667  tmux attach-session -t queue
+  668  sudo tmux attach-session -t queue
+  669  ssh root@lic -p 2212
+  670  ssh 172.16.15.246
+  671  tmux ls
+  672  ssh 172.16.15.246
+  673  ssh root@lic -p 2212
+  674  ruby
+  675  exit
+  676  plasma-desktop 
+  677  exit
+  678  ssh root@16.16.16.2 -p 2212
+  679  eit
+  680  exity
+  681  su
+  682  cd
+  683  clear
+  684  ssh root@16.16.16.2 -p 2212
+  685  su sayeed
+  686  exit
+  687  ssh root@16.16.16.2 -p 2212
+  688  exit
+  689  ssh root@16.16.16.2 -p 2212
+  690  clear
+  691  exit
+  692  ssh root@fox -p 7001
+  693  vncviewer
+  694  exit
+  695  tmux attach-session -t queue
+  696  ssh root@lic -p 2212
+  697  ssh root@lic -p 2212 -vvv
+  698  ssh root@16.16.16.2 -p 2212 -vvv
+  699  ssh root@16.16.16.2 -p 2212
+  700  diff
+  701  su
+  702  exit
+  703  ssh root@113.107.235.11 -p 7001
+  704  ssh root@172.16.10.172
+  705  exit
+  706  ssh root@113.107.235.11 -p 7001
+  707  ssh root@fox -p 7001
+  708  cd Desktop/
+  709  ls
+  710  vi render- 
+  711  mkdir -P /server/share_folder/sayeed/Render-dco
+  712  mkdir -p /server/share_folder/sayeed/Render-doc
+  713  cp -rf render- /server/share_folder/sayeed/Render-doc/
+  714  clear
+  715  maya
+  716  clear
+  717  maya
+  718  ssh root@16.16.16.2 -p 2212
+  719  exit
+  720  python
+  721  exit
+  722  cd
+  723  ruby ./update_transfer_q_entity.rb seq14_scn28_sh005_lig_lightingCharHair_v005__aa8a438d-4521-4155-ab49-ea022c7d31bf download done
+  724  ruby ./update_transfer_q_entity.rb seq22_scn38_sh027_lig_lightingBG_v002__aba0d11e-60ef-4a82-adb3-a1222dfffd70 download done
+  725  ruby ./update_transfer_q_entity.rb seq05B_scn14_sh007_lig_lightingCH_v009__8785b95c-bfd6-4b4e-b2f6-57c820fe5e80 download done
+  726  ruby ./update_transfer_q_entity.rb seq16_scn32_sh007_lig_lightingChAbu_v003__20b2a6db-dbea-4ca6-895d-de30668e1011 download done
+  727  ruby ./update_transfer_q_entity.rb seq16_scn32_sh007_lig_lightingChBilal_v003__8562ed50-bf89-46e5-afd5-705fadf35b6f download done
+  728  clear
+  729  ruby ./update_transfer_q_entity.rb seq22_scn38_sh076_lig_lightingChar_v002__15c2eb2c-5050-4a5f-8f81-a51bafb264a0 download done
+  730  ruby ./update_transfer_q_entity.rb seq16_scn31_sh004_lig_lightingBg_v005__20c7f2d9-52b1-48a8-9ced-45ebb80b781e download done
+  731  ruby ./update_transfer_q_entity.rb seq16_scn31_sh004_lig_lightingCh_v007__8563337a-4f10-4ef5-be0d-76820eae6d92 download done
+  732  ruby ./update_transfer_q_entity.rb  download done
+  733  ruby ./update_transfer_q_entity.rb  seq16_scn32_sh009_lig_lightingChBilal_v002__b6ccd0cc-88ea-477b-9878-6c5f24cf6d34download done
+  734  ruby ./update_transfer_q_entity.rb  seq16_scn32_sh009_lig_lightingChBilal_v002__b6ccd0cc-88ea-477b-9878-6c5f24cf6d34 download done
+  735  ruby ./update_transfer_q_entity.rb  seq16_scn32_sh009_lig_lightingChAbu_v003__8e7b45a5-0b11-45cd-a0cf-bc5c034e67a3 download done
+  736  ruby ./update_transfer_q_entity.rb  seq44_scn74_sh001_lig_lighting_v006__88f4cae7-8ff3-413d-b83a-fc15a22ed937 download done
+  737  ssh root@16.16.16.2 -p 2212
+  738  exit
+  739  su
+  740  cd
+  741  w
+  742  clear
+  743  ssh root@172.16.15.246
+  744  ssh root@113.107.235.11 -p 7001
+  745  ssh 172.16.15.246
+  746  clear
+  747  ruby ./update_transfer_q_entity.rb seq22_scn38_sh076_lig_lightingChar_v003__1d7ac4e5-1dff-4aa1-a139-2afdeded77c0 upload done
+  748  /nas/projects/development/productionTools/py_queue/bin/submit_to_queue.py RENDER /nas/projects/Tactic/bilal/render/.depsTemp/seq22_scn38_sh076_lig_lightingChar_v003.ma_filtered.lst ramesh /nas/projects/Tactic/sandbox/bilal/ramesh/sequences//seq22_scn38_sh076_lig_lightingChar_v003.alf 1d7ac4e5-1dff-4aa1-a139-2afdeded77c0 50
+  749  vi /etc/fstab 
+  750  exit
+  751  su anshul
+  752  exit
+  753  ssh root@113.107.235.11 -p 7001
+  754  exit
+  755  ssh root@16.16.16.2 -p 2212
+  756  ssh root@172.16.15.246
+  757  ssh root@172.16.15.229
+  758  ping 172.16.15.229
+  759  ping 172.16.15.228
+  760  ssh root@172.16.15.228
+  761  ssh root@172.16.15.229
+  762  exit
+  763  ruby ./update_transfer_q_entity.rb seq22_scn38_sh051A_lig_lightingCh_v003__57ae82f0-e07e-4ade-abe9-517cc2d72e84 upload done
+  764  cd
+  765  ruby ./update_transfer_q_entity.rb seq22_scn38_sh051A_lig_lightingCh_v003__57ae82f0-e07e-4ade-abe9-517cc2d72e84 upload done
+  766  ssh root@16.16.16.2 2212
+  767  ssh root@16.16.16.2 -a 2212
+  768  ssh root@172.16.15.201
+  769  top -H -p (CORE_ID)
+  770  top -H -p {CORE_ID}
+  771  top -H -p {PROC_ID}
+  772  ps -mo pid,tid,%cpu,psr -p `pgrep BINARY-NAME`
+  773  watch -tdn0.5 ps -mo pid,tid,%cpu,psr -p \`pgrep BINARY-NAME\`
+  774  clear
+  775  mpstat -p ALL
+  776  mpstat ALL
+  777  mpstat CPU | ALL
+  778  clear
+  779  top
+  780  clear
+  781  htop 
+  782  top
+  783  clear
+  784  top
+  785  clear
+  786  ps -aF
+  787  htop
+  788  ssh root@172.16.15.201
+  789  su
+  790  exit
+  791  cd
+  792  clear
+  793  ruby ./update_transfer_q_entity.rb seq14_scn28_sh007_lig_lightingBg_v006__8e19b800-06fc-4890-841b-db1373a31cc0  upload done
+  794  java --version
+  795  cd /usr/java/
+  796  ls
+  797  ruby ./update_transfer_q_entity.rb seq22_scn38_sh034_lig_lightingCharfg_v003__187b47e3-c65f-42cf-92b7-e329a3d14352  upload done
+  798  cd
+  799  ruby ./update_transfer_q_entity.rb seq22_scn38_sh034_lig_lightingCharfg_v003__187b47e3-c65f-42cf-92b7-e329a3d14352 upload done
+  800  ruby ./update_transfer_q_entity.rb seq14_scn28_sh041_lig_lightingSafwan_v001__cd86d7bd-0f8e-4697-a3e3-55687acb5a61 upload done
+  801  clear
+  802  /nas/projects/development/productionTools/py_queue/bin/submit_to_queue.py SYNC_RENDER /nas/projects/Tactic/bilal/render/.depsTemp/seq22_scn38_sh007_lig_lightingCrowdLeft_v002.ma_filtered.lst ramesh /nas/projects/Tactic/sandbox/bilal/ramesh/sequences//seq22_scn38_sh007_lig_lightingCrowdLeft_v002.alf 7c69e5b8-51dc-4a20-b1ad-9d2465b5ce3f
+  803  ruby ./update_transfer_q_entity.rb seq14_scn28_sh041_lig_lightingBilal_v002__6ab40a40-7ebe-4354-9f15-941b1f230b35 upload done
+  804  ssh root@172.16.15.201
+  805  ruby ./update_transfer_q_entity.rb seq03B_scn11_sh001_lig_lightingExtras_v003__c3b057b2-7335-43d0-bc59-04e8ca26e289   upload done
+  806  vi /etc/fstab 
+  807  ssh root@172.16.15.201
+  808  ssh root@16.16.16.2 -a 2212
+  809  ssh root@16.16.16.2 -p 2212
+  810  exit
+  811  ssh root@16.16.16.2 -p 2212
+  812  diff /home/anshul/ShotApp/shotApp/templates/shotApp.html /home/anshul/ShotApp/shotApp1/templates/shotApp.html 
+  813  diff /home/anshul/ShotApp/shotApp/templates/shotApp.html /home/anshul/ShotApp/shotApp1.0/templates/shotApp.html 
+  814  diff /home/anshul/ShotApp/shotApp/rpc/__init__.py /home/anshul/ShotApp/shotApp1.0/rpc/__init__.py
+  815  diff /home/anshul/ShotApp/shotApp/ /home/anshul/ShotApp/shotApp1.0/
+  816  skype
+  817  alsamixer 
+  818  su
+  819  exit
+  820  vncviewer 
+  821  maya
+  822  vncviewer 
+  823  ssh render@16.16.16.2 -p 2212
+  824  ssh root@16.16.16.2 -p 2212
+  825  ssh render@16.16.16.2 -p 2212
+  826  rv /nas/projects/Tactic/bilal/render/seq11/scn25/sh001/cg/v002/horseMane/b*
+  827  rv /nas/projects/Tactic/bilal/render/seq11/scn25/sh001/cg/v002/horseMane/
+  828  rv /nas/projects/Tactic/bilal/render/seq11/scn25/sh001/cg/v003/horseMane/
+  829  /nas/projects/development/productionTools/py_queue/bin/submit_to_queue.py RENDER /nas/projects/Tactic/bilal/render/.depsTemp/seq22_scn38_sh063_lig_lightingCh_v003.ma_filtered.lst sivakumar /nas/projects/Tactic/sandbox/bilal/sivakumar/sequences//seq22_scn38_sh063_lig_lightingCh_v003.alf 7e25a7e6-75d6-4c87-86b9-00aaf7735eac
+  830  ssh root@172.16.15.246
+  831  tmux ls
+  832  exit
+  833  ruby ./update_transfer_q_entity.rb seq22_scn38_sh051A_lig_lightingCh_v003__57ae82f0-e07e-4ade-abe9-517cc2d72e84 download done
+  834  ruby ./update_transfer_q_entity.rb seq14_scn28_sh023_lig_lightingBg_v001__dcbc37df-d09b-4a52-8aef-6b0030660b83 download done
+  835  su
+  836  exit
+  837  su anshul
+  838  exit
+  839  su anshul
+  840  cd
+  841  /nas/projects/development/productionTools/py_queue/bin/submit_to_queue.py SYNC_RENDER /nas/projects/Tactic/bilal/render/.depsTemp/seq22_scn38_sh028_lig_lighting_v009.ma_filtered.lst junaid /nas/projects/Tactic/sandbox/bilal/junaid/sequences//seq22_scn38_sh028_lig_lighting_v009.alf c2ad2c68-7dcc-4e55-abe3-f0cda6e68df1 60
+  842  ssh root@172.16.15.246
+  843  su anshul
+  844  ruby ./update_transfer_q_entity.rb seq22_scn38_sh049_lig_lightingCh_v004__d4747772-3d75-4f6a-a976-bf29a16f262e download done
+  845  su
+  846  su anshul
+  847  ruby ./update_transfer_q_entity.rb seq22_scn38_sh028_lig_lighting_v009__fec2819a-02c2-42c6-9636-ff0a5c9c9f3d  upload done
+  848  ruby ./update_transfer_q_entity.rb seq22_scn38_sh069_lig_lighting_v010__e59491b9-82a7-49d3-b6f5-d065e5600c33  upload done
+  849  ruby ./update_transfer_q_entity.rb seq22_scn38_sh038_lig_lighting_v008__a9591c83-ca93-4d9a-a4b2-59b89bab77b2  download done
+  850  su
+  851  hostname -I
+  852  ping 172.15.16.241
+  853  ping 172.15.16.46
+  854  ping 172.15.16.241
+  855  [A
+  856  ping 172.15.16.241
+  857  ping 172.15.16.46
+  858  ping 172.15.16.241
+  859  clear
+  860  hostname
+  861  hostname -I
+  862  ping 172.15.16.241
+  863  ssh root@113.107.235.11 -p 7001
+  864  maya
+  865  cd /usr/local/
+  866  ls
+  867  ll
+  868  su
+  869  cat /etc/redhat-release 
+  870  clear
+  871  telnet 172.16.10.9 5054
+  872  cd /usr/local/qualoth-bkp/
+  873  ls
+  874  cd bin/
+  875  ll
+  876  maya
+  877  su anshul
+  878  ruby ./update_transfer_q_entity.rb seq28_scn45_sh008_lig_lightingBilal_v002__36360855-6dfc-4315-9d81-3e7d4696dd89 download done
+  879  ruby ./update_transfer_q_entity.rb seq28_scn45_sh007_lig_lightingShadow_v002__eca91d72-ac60-47c3-98d2-9809d5879e7c  download done
+  880  ruby ./update_transfer_q_entity.rb seq22_scn38_sh062_lig_lightingCharMat_v006__87ea4f3d-5a50-4887-bf83-aa1395c3806a download done
+  881  clear
+  882  ruby ./update_transfer_q_entity.rb seq26_scn43_sh034_lig_lightingBilalMatte_v001__179cee8b-b537-4249-9c49-781d2cb30d26  download done
+  883  cd
+  884  ruby ./update_transfer_q_entity.rb seq26_scn43_sh034_lig_lightingBilalMatte_v001__179cee8b-b537-4249-9c49-781d2cb30d26  download done
+  885  ruby ./update_transfer_q_entity.rb seq26_scn43_sh034_lig_lightingHamzaB_v002__20b019d8-c6cc-4307-96cb-447db0c77bb7  download done
+  886  clear
+  887  ruby ./update_transfer_q_entity.rb seq26_scn43_sh022_lig_lightingBilal_v002__130a8602-4967-4a65-b24b-465ade2cd260  download done
+  888  ruby ./update_transfer_q_entity.rb seq26_scn43_sh022_lig_lightingHamzaB_v002__0551de72-14ec-4ad3-8007-f9dd9109537b  download done
+  889  clear
+  890  ruby ./update_transfer_q_entity.rb seq22_scn38_sh062_lig_lightingBgEnv_v003__3b39f7bf-cd6e-4720-a5c0-53304f03c1d3  download done
+  891  ruby ./update_transfer_q_entity.rb seq22_scn38_sh062_lig_lightingBgEnv_v004__3b39f7bf-cd6e-4720-a5c0-53304f03c1d3  download done
+  892  ruby ./update_transfer_q_entity.rb eq22_scn38_sh062_lig_lightingBgsoldier_v004__44194d15-f6b0-47fe-8aa6-db1b5d3febf1  download done
+  893  ruby ./update_transfer_q_entity.rb seq22_scn38_sh062_lig_lightingBgsoldier_v004__44194d15-f6b0-47fe-8aa6-db1b5d3febf1  download done
+  894  ruby ./update_transfer_q_entity.rb seq05B_scn14_sh001_lig_lightingCH_v004__7a05a46d-53af-44be-9751-31afcb4bdc53  download done
+  895  ruby ./update_transfer_q_entity.rb seq26_scn43_sh006_lig_lightingBilal_v002__01d5449c-0033-49b9-97ff-42168a794c61  download done
+  896  cd /nas/projects/Tactic/bilal/render/
+  897  ls
+  898  vi 11.sh
+  899  clear
+  900  ruby ./update_transfer_q_entity.rb seq00_scn00_sh000_lig_lightingAbuBakr_v002__22c20a63-b6e2-4990-8793-b8c95febfb55  download done
+  901  cd
+  902  ruby ./update_transfer_q_entity.rb seq00_scn00_sh000_lig_lightingAbuBakr_v002__22c20a63-b6e2-4990-8793-b8c95febfb55  download done
+  903  ruby ./update_transfer_q_entity.rb seq26_scn43_sh022_lig_lightingHamzaHorse_v001__5bd87e6c-a21e-48de-b6e7-d5e80e96f425  delete
+  904  ruby ./update_transfer_q_entity.rb seq26_scn43_sh022_lig_lightingHamzaHorse_v001__5bd87e6c-a21e-48de-b6e7-d5e80e96f425  upload delete
+  905  ruby ./update_transfer_q_entity.rb seq26_scn43_sh028_lig_lightingBilal_v002__529d8de6-1fc4-4fd7-9dee-f24c9c70df63  download done
+  906  clear
+  907  /nas/projects/development/productionTools/py_queue/bin/submit_to_queue.py SYNC_RENDER /nas/projects/Tactic/bilal/render/.depsTemp/seq22_scn38_sh062_lig_lightingBgEnv_v003.ma_filtered.lst yugandhar /nas/projects/Tactic/sandbox/bilal/yugandhar/sequences//seq22_scn38_sh062_lig_lightingBgEnv_v003.alf 3b39f7bf-cd6e-4720-a5c0-53304f03c1d3 60
+  908  ruby ./update_transfer_q_entity.rb seq28_scn45_sh005_lig_lightingBilal_v002__f504db8d-8471-49d3-b52c-bdbe0394d007 download done
+  909  ruby ./update_transfer_q_entity.rb seq26_scn43_sh027_lig_lightingCh_v006__92a02643-b752-43a9-b9f4-aaa151ce033e download delete
+  910  ruby ./update_transfer_q_entity.rb seq05B_scn14_sh012_lig_lightingCH_v003__b1848abf-baf3-4e26-818d-b968e7b80ee3  download delete
+  911  ruby ./update_transfer_q_entity.rb seq18_scn35_sh030_lig_lightingCh_v008__0f99da4f-73c5-4e89-b1f4-2296c3028732  download delete
+  912  su anshul
+  913  ruby ./update_transfer_q_entity.rb seq18_scn35_sh033_lig_lightingSafwan_v001__047d5b6a-c377-40ff-8b07-61307a4b097a  download done
+  914  cd
+  915  ruby ./update_transfer_q_entity.rb seq18_scn35_sh033_lig_lightingSafwan_v001__047d5b6a-c377-40ff-8b07-61307a4b097a  download done
+  916  su
+  917  ssh render@16.16.16.2 -p 2212
+  918  python manage.py runserver 172.16.15.221:8000
+  919  vncviewer
+  920  telnet 112.73.6.234 1503
+  921  ruby ./update_transfer_q_entity.rb seq26_scn43_sh027_lig_lightingBg_v003__76fe1214-8c23-4978-a8bf-4cbbb8a6a6d5 download archive
+  922  ruby ./update_transfer_q_entity.rb seq26_scn43_sh015_lig_lightingCh_v009__345126bf-2d4f-4180-87e9-b6854f78676b download archive
+  923  ruby ./update_transfer_q_entity.rb seq28_scn45_sh009_lig_lightingCh_v004__7435da30-ef2f-498e-8dc3-6048a3f2f392 download archive
+  924  ruby ./update_transfer_q_entity.rb seq26_scn43_sh025_lig_lightingCh_v004__f80b1173-9f65-4f5c-a81b-61029c3a00b8 download archive
+  925  ruby ./update_transfer_q_entity.rb seq18_scn35_sh030_lig_lightingBg_v008__008f7639-708b-433b-b7d5-45bb5d543b44 download archive
+  926  ruby ./update_transfer_q_entity.rb seq28_scn45_sh006_lig_lightingCh_v007__268a53d2-cb94-4fea-9542-dcad5491dc1d download archive
+  927  ruby ./update_transfer_q_entity.rb seq05B_scn14_sh005_lig_lightingBG_v003__99749be7-089f-4c14-859a-adcda68cb771 download archive
+  928  ruby ./update_transfer_q_entity.rb seq26_scn43_sh023_lig_lightingHorse_v004__25b95500-08c4-41a6-9525-33bbbc9cd186 download archive
+  929  ruby ./update_transfer_q_entity.rb seq22_scn38_sh062_lig_lightingBgKey_v004__7d5e7d86-446c-490a-acb9-3a41a27149d2 download archive
+  930  ruby ./update_transfer_q_entity.rb seq26_scn43_sh022_lig_lightingHamzaB_v002__0551de72-14ec-4ad3-8007-f9dd9109537b download archive
+  931  ruby ./update_transfer_q_entity.rb seq05B_scn14_sh007_lig_lightingCHExtra_v005__5ed98bc4-f3dd-4cff-989c-fccfcebb9c73 download done
+  932  ruby ./update_transfer_q_entity.rb seq05B_scn14_sh007_lig_lightingCHExtra_v006__5ed98bc4-f3dd-4cff-989c-fccfcebb9c73 download archive
+  933  ruby ./update_transfer_q_entity.rb seq43_scn73_sh003_lig_lighting_v004__65117a3f-cdf2-42d2-81ff-a33bb16d7e50 download archive
+  934  ruby ./update_transfer_q_entity.rb seq43_scn73_sh002_lig_lighting_v003__b5680642-3977-479d-8f55-5f24519c3945 download archive
+  935  ruby ./update_transfer_q_entity.rb seq03D_scn11_sh014_lig_lighting_v004__4d62a5f2-16eb-4587-8e2d-215fe9b47cf3 download archive
+  936  ruby ./update_transfer_q_entity.rb seq22_scn38_sh063_lig_lightingChSHD_v010__24db326f-b6c3-48d0-a78b-1855910a3341 download archive
+  937  ruby ./update_transfer_q_entity.rb seq26_scn43_sh052_lig_lightingHAMZA_v007__0b94f522-d75b-4f36-81be-884bb49c206b download done
+  938  ruby ./update_transfer_q_entity.rb seq03D_scn11_sh006_lig_lighting_v008__90a3845f-c707-4af4-aca2-4263d0b71c7f download archive
+  939  ssh root@16.16.16.2 -p 2212
+  940  ssh root@113.107.235.11 -p 7001
+  941  ping 113.107.235.11
+  942  ping 119.81.131.43
+  943  ping 119.81.131.43 -c 10
+  944  telnet 119.81.131.43 33001
+  945  vncviewer
+  946  ssh anshul@172.16.15.246
+  947  ping 172.16.10.40
+  948  cd
+  949  ruby ./update_transfer_q_entity.rb seq28_scn45_sh010_lig_lightingBilal_v002__23eafa11-3b5b-4dd3-b47b-78d7dcb05c7a download done
+  950  ruby ./update_transfer_q_entity.rb seq28_scn45_sh004_lig_lightingBilal_v003__8895e7e0-52fe-4b0c-a875-3878f9e2160f download done
+  951  ruby ./update_transfer_q_entity.rb seq03D_scn11_sh001_lig_lighting_v004__e77614a4-af3d-431c-90aa-2f005e425bd3 download done
+  952  ssh root@172.16.15.226
+  953  cd
+  954  su
+  955  clear
+  956  cd
+  957  clear
+  958  /nas/projects/development/productionTools/py_queue/bin/submit_to_queue.py SYNC_RENDER /nas/projects/Tactic/bilal/render/.depsTemp/seq22_scn38_sh007_lig_lightingCrowdTestRF_v001.ma_filtered.lst ramesh /nas/projects/Tactic/sandbox/bilal/ramesh/sequences//seq22_scn38_sh007_lig_lightingCrowdTestRF_v001.alf c0398973-5e6e-4a39-801a-5ed1aa12a1ba 100 
+  959  exit
+  960  cd
+  961  ruby ./update_transfer_q_entity.rb seq18_scn35_sh014_lig___469d64a3-1094-4c8f-b775-e794d543ac5b download done
+  962  w
+  963  cd
+  964  ruby ./update_transfer_q_entity.rb seq05B_scn14_sh002B_lig_lightingCH_v002__b02d5aed-a9bc-4e12-ad7b-9fa3b5dc000c download done
+  965  vi /etc/yum.conf
+  966  vi /etc/grub.conf 
+  967  su
+  968  exit
+  969  su
+  970  maya
+  971  ssh root@113.107.235.11 -p 7001
+  972  vncviewer
+  973  xrandr --current
+  974  xrandr --output DP-2 --primary
+  975  xrandr --output DVI-I-1 --primary
+  976  su
+  977  cd
+  978  ruby ./update_transfer_q_entity.rb seq26_scn43_sh040_lig_lighting_v004__e5147248-b7b1-4a3e-be79-37a6e842e8cb download done
+  979  ssh root@113.107.235.11 -p 7001
+  980  ls /etc/modprobe.d/no-usb 
+  981  clear
+  982  exit
+  983  su
+  984  exit
+  985  ssh render@16.16.16.2 -p 2212
+  986  cd
+  987  ruby ./update_transfer_q_entity.rb seq26_scn43_sh040_lig_lighting_v004__e5147248-b7b1-4a3e-be79-37a6e842e8cb upload delete
+  988  cd
+  989  ruby ./update_transfer_q_entity.rb seq26_scn43_sh037_lig_lightingHamzaHorse_v002__5449256e-8f2e-499d-9f50-ae0a8568a010 upload done
+  990  ruby ./update_transfer_q_entity.rb seq26_scn43_sh062_lig_lightingChBilal_v003__4f901bb7-7480-4396-918a-c1453c4704c1 upload done
+  991  jobSpooler 
+  992  job
+  993  jobs
+  994  jobspooler
+  995  cd
+  996  ruby ./update_transfer_q_entity.rb seq28_scn45_sh001_lig_lightingBilal_v003__16e2e04f-a2bf-4ab3-9055-56047edee143 upload delete
+  997  exit
+  998  history -> histDoc.txt
+  999  history | tee -a histDoc.txt

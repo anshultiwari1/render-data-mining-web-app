@@ -17,7 +17,10 @@ Description : Shot List Page.
 		<link href="../media/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<script src="../media/js/jquery-1.10.2.min.js" language="javascript" type="text/javascript"></script>
 		<script src="../media/js/jquery.jsonrpc.js" language="javascript" type="text/javascript"></script>
+<<<<<<< HEAD
 		<script src="../media/bootstrap-3.3.4-dist/js/bootstarp.min.js" language="javascript" type="text/javascript"></script>
+=======
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 		<script src="../media/js/jquery-ui-1.10.0.min.js" language="javascript" type="text/javascript"></script>
 		<script src="../media/js/jquery.datepick.js" language="javascript" type="text/javascript"></script>
 		<script type="text/javascript">
@@ -46,6 +49,10 @@ Description : Shot List Page.
 
 
 			function draw_table(){
+<<<<<<< HEAD
+=======
+				//var server = $('#server').val();
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 				// loader -- Please wait
 				loading_time(1);
 				if ($('#date1').val()=="") {	var start_date = "";}
@@ -123,6 +130,10 @@ Description : Shot List Page.
 
 			function feed_info(){
 				loading_time(1);
+<<<<<<< HEAD
+=======
+				//var feed = $('#user_info').val();
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 				if ($('#date1').val()=="") {	var start_date = "";}
 				else {	var date1 = new Date($('#date1').val()),
 					start_date = (date1.getMonth()+1)+'/'+date1.getDate()+'/'+date1.getFullYear();
@@ -153,11 +164,22 @@ Description : Shot List Page.
 
 
 			function loading_time(visible){
+<<<<<<< HEAD
 				if (visible) {
 					$("#loading_fade").show();
 					$("#loader").show();
 				}
 				else {
+=======
+				//console.log(visible);
+				if (visible) {
+					$("#loading_fade").show();
+					$("#loader").show();
+					//$("#loader").html("Please wait... &nbsp;<img style='display: inline-block;vertical-align: middle;' src='../media/Images/search.gif' />");
+				}
+				else {
+					//$("#loader").html("");
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 					$("#loader").hide();
 					$("#loading_fade").hide();
 				}
@@ -207,6 +229,11 @@ Description : Shot List Page.
 					.split(tmpRowDelim).join(rowDelim)
 					.split(tmpColDelim).join(colDelim) + '"';
 
+<<<<<<< HEAD
+=======
+				//csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+				//console.log(csv);
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 				var server = $('#server').val(),
 				today = new Date().toDateString().split(" ").join("-"),
 				file = "shotlist_"+server+"_"+today;
@@ -265,6 +292,11 @@ Description : Shot List Page.
 					.split(tmpRowDelim).join(rowDelim)
 					.split(tmpColDconfigelim).join(colDelim);
 
+<<<<<<< HEAD
+=======
+				//csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+				//console.log(csv);
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 				var shot = $('#name').text(),
 				jid = $('#job_id').text(),
 				file = "frameDetail_"+shot+"_"+jid;
@@ -299,6 +331,33 @@ Description : Shot List Page.
 						return;
 					}
 				});
+<<<<<<< HEAD
+=======
+				/*$('#date1').datepick({
+					yearRange: "-1:+1",
+					dateFormat: 'dd-M-yyyy',
+					numberOfMonths: 1,
+					onSelect: function(selected) {
+						console.log(selected);
+						var minDate = new Date(selected);
+						minDate.setDate(minDate.getDate()+1);
+						$("#date2").datepick("option","minDate", minDate || null);
+						return;
+					}
+				});
+				$('#date2').datepick({
+					yearRange: "-1:+1",
+					dateFormat: 'dd-M-yyyy',
+					numberOfMonths: 1,
+					onSelect: function(selected) {
+						var maxDate = new Date(selected);
+						maxDate.setDate(maxDate.getDate()-1);
+						$("#date1").datepick("option","maxDate", maxDate || null);
+						return;
+					}
+				});*/
+
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 				$('#pre').click(function(){
 					if ($('#date1').val()!=""){
 						var date = new Date($('#date1').val());
@@ -499,11 +558,17 @@ Description : Shot List Page.
 
 			.filter_table{
 				margin: 1em 0;
+<<<<<<< HEAD
 				padding: 0.5em;
 				border: 1px solid #2e6da4;
 				border-radius: 5px;
 				background: #b0b0b0;
 				border-collapse: separate;
+=======
+				border: 1px solid #006464;/*#5E9C9C;*/
+				border-radius: 5px;
+				background: rgb(157, 157, 157);/*rgb(194, 188, 180);*/
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 			}
 			.filter_table tr{
 				margin: 2em 0;
@@ -538,6 +603,12 @@ Description : Shot List Page.
 			.odd{
 				background-color: white;
 			}
+<<<<<<< HEAD
+=======
+			table tbody .even td {
+				background-color: #E2E1E1;
+			}
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 
 		</style>
 	</head>
@@ -559,11 +630,16 @@ Description : Shot List Page.
 				<div style="width:90%;" >
 					<div style="display:block;">
 						<div class="cluster">
+<<<<<<< HEAD
 							<label style="margin-left:5px;">Select server: </label><select class="form-control info_left" id="server" onchange="setClient()"><option selected>lic</option><option>fox</option></select>
+=======
+							<label style="margin-left:5px;">Select server: </label><select class="info_left" style="margin-left:8em;" id="server" onchange="setClient()"><option selected>lic</option><option>fox</option></select>
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 							<a style="float:right" href="http://172.16.15.246:55555/" target="blank" >check the queue</a>
 							<table class="filter_table">
 								<tr>
 								      <td><label>Start Date: </label></td>
+<<<<<<< HEAD
 								      <td><input id="date1" class="form-control datepickBox" style="display:inline" type="text"/><input id="pre" type="image" src="../media/Images/previous.png" /></td>
 								      <td><label>End Date: </label></td>
 								      <td><input id="date2" class="form-control datepickBox" style="display:inline" type="text"/><input id="nxt" type="image" src="../media/Images/next.png" /></td>
@@ -589,11 +665,43 @@ Description : Shot List Page.
 								      <td><label>Times Render:</label></td>
 								      <td><input class="form-control" type="text" id="return_info_totrender" disabled /></td>
 								      <td><button class="btn btn-primary btn-md SubR" type="submit" style="margin-top:0; margin-right:5%;" onclick="feed_info()">Get info</button></td>
+=======
+								      <td><input id="date1" class="datepickBox" type="text"/><input id="pre" type="image" src="../media/Images/previous.png" /></td>
+								      <td><label>End Date: </label></td>
+								      <td><input id="date2" class="datepickBox" type="text"/><input id="nxt" type="image" src="../media/Images/next.png" /></td>
+								</tr>
+								<tr>
+								      <td><label>User: </label></td>
+								      <td><input type="text" id="user_info"/></td>
+								      <td><label>Sequence: </label></td>
+								      <td><input type="text" id="seq_info"/></td>
+								      <td><label>Scene: </label></td>
+								      <td><input type="text" id="scn_info"/></td>
+								      <td><label>Shot: </label></td>
+								      <td><input type="text" id="shot_info"/></td>
+								      <td><button class="SubR" type="submit" style="margin-top:0; margin-right:5%;" onclick="draw_table()">Get list</button></td>
+								</tr>
+								<tr>
+								      <td><label>Total Render Time:</label></td>
+								      <td><input type="text" id="return_info_tottime" disabled /></td>
+								      <td><label>Average Render Time:</label></td>
+								      <td><input type="text" id="return_info_avgtime" disabled /></td>
+								      <td><label>Total Frames Render:</label></td>
+								      <td><input type="text" id="return_info_totframe" disabled /></td>
+								      <td><label>Times Render:</label></td>
+								      <td><input type="text" id="return_info_totrender" disabled /></td>
+								      <td><button class="SubR" type="submit" style="margin-top:0; margin-right:5%;" onclick="feed_info()">Get info</button></td>
+
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 								</tr>
 							</table>
 						</div>
 						<div class="cluster" style="height:66em; overflow-y:scroll;" >
+<<<<<<< HEAD
 							<table class="table table-striped table-bordered table-hover table-condensed info_table" style="height=52em;" id="shotTable">
+=======
+							<table class="info_table" style="height=52em;" id="shotTable">
+>>>>>>> 696e0d5728b507979eb1f6aca88eac6357fe71c7
 								<thead>
 									<tr><th colspan=4>Jobs</th></tr>
 									<tr><th>Title</th><th>Owner</th><th>Job id</th><th>Frames</th></tr>
